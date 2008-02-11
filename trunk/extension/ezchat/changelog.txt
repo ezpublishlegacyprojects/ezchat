@@ -1,0 +1,4 @@
+Changes from null to 0.1 Alpha 1
+-------------------------------------
+- project initialization
+- implementing ajaxchat 0.7.3 standalone

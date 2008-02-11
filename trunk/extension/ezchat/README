@@ -1,0 +1,93 @@
+eZchat extension 0.1.x README
+
+What is the eZchat extension?
+=============================
+
+This extension implements ajaxchat in eZpublish.
+An implementation of blueimp ajax chat in eZpublish,
+like an extension with module and datatype views,
+and complete integration of user/role management within eZpublish.
+
+This is the implementation of Ajax Chat,
+by blueimp (https://blueimp.net/ajax/), in an extension.
+
+This chat in ajax allow multiple channel, 3 role levels,
+and typical functionalities for a chat server.
+
+This implementation allow us to create new channel with content
+(with a ezchatroom datatype), to administrate roles with eZpublish,
+and to manage chat users with eZpublish users.
+
+
+eZchat version
+==============
+
+The current version of eZchat is 0.1.x Alpha 1.
+You can find details about changes for this version in
+doc/changelogs/*
+
+
+License
+=======
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of version 2.0  of the GNU General
+Public License as published by the Free Software Foundation.
+
+
+Requirements
+============
+
+The following requirements exists for using eZchat extension:
+
+o  eZ publish version:
+
+   Make sure you use eZ publish version 4.0 or higher.
+
+o  PHP version:
+
+   as indicated in your eZ publish version requirements
+
+o  Web Browser:
+
+   Make sure you have one of the following web browsers:
+   Internet Explorer 6.0 or higher,
+   Firefox 2.0 or higher.
+
+   Make sure that Javascript support is enabled in your web browser.
+
+Installation
+============
+
+Please read the INSTALL file for installation instructions.
+
+
+Where to get more help
+======================
+
+Quick tour: http://projects.ez.no/ezchat
+Documentation: http://projects.ez.no/ezchat/downloads
+eZ publish forums: http://projects.ez.no/ezchat/forum
+
+
+Live demo of eZchat
+===================
+
+http://wascou.org/
+
+
+Troubleshooting
+===============
+
+1. Read the FAQ
+   ------------
+
+   Some problems are more common than others. The most common ones are listed
+   in the FAQ file.
+
+2. Support
+   -------
+
+   If you have find any problems not handled by this document or the FAQ you
+   can contact us trough the support system:
+   http://projects.ez.no/ezchat/forum
