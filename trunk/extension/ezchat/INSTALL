@@ -1,0 +1,166 @@
+eZchat extension 0.1.x INSTALL
+
+
+What is the eZchat extension?
+=============================
+
+This extension implements ajaxchat in eZpublish.
+An implementation of blueimp ajax chat in eZpublish,
+like an extension with module and datatype views,
+and complete integration of user/role management within eZpublish.
+
+This is the implementation of Ajax Chat,
+by blueimp (https://blueimp.net/ajax/), in an extension.
+
+This chat in ajax allow multiple channel, 3 role levels,
+and typical functionalities for a chat server.
+
+This implementation allow us to create new channel with content
+(with a ezchatroom datatype), to administrate roles with eZpublish,
+and to manage chat users with eZpublish users.
+
+
+Requirements
+============
+
+The following requirements exists for using eZchat extension:
+
+o  eZ publish version:
+
+   Make sure you use eZ publish version 4.0 or higher.
+
+o  PHP version:
+
+   as indicated in your eZ publish version requirements
+
+o  Web Browser:
+
+   Make sure you have one of the following web browsers:
+   Internet Explorer 6.0 or higher,
+   Firefox 2.0 or higher.
+
+   Make sure that Javascript support is enabled in your web browser.
+
+
+Getting eZ publish
+==================
+
+You can download a version of eZ publish from ez.no, you will find the
+various versions at:
+http://ez.no/ez_publish/download/all_releases/ez_publish_4_stable_releases
+
+NOTE: You will need eZ publish 4.0 or higher.
+
+Information on the installation of eZ publish can be found at:
+http://ez.no/doc
+
+
+Installing eZchat extension
+===========================
+
+1. Download the ezchat package.
+
+   Windows users should download the "zip" package. Linux/UNIX users may
+   download any package format as long as the necessary unpacking tools are
+   available.
+
+2. Copy the downloaded package into the 'extension' directory of your
+   eZ publish installation.
+
+3. Unpack the files in the distribution.
+
+   Windows users should unzip the files. The 'ezchat' directory will be created
+   inside the 'extension' directory.
+
+   Linux users may use of the following commands depending on the file type:
+   [tar.gz]:
+   $ tar -zxvf ezchat-0.1.tar.gz
+   [bz2]:
+   $ tar -jxvf ezchat-0.1.bz2
+   [zip]:
+   $ unzip ezchat-0.1.zip
+
+4. Run the proper sql dump located in the ezchat/sql folder. For
+   MySQL, run mysql.sql, etc...
+   This dump may be integrated into the eZpublish database, or in an other
+   database if you configure dbConnection properties in the settings/ezchat.ini
+   file.
+
+5. Configure dbConnection settings in settings/ezchat.ini file, if you have separated
+   base for ezChat : uncomment dbConnection paragraph, and put right values in
+   host, user, pass, name, type parameters (see eZpublish doc for similar site.ini
+   parameters).
+
+6. Enable the eZchat extension in eZ publish.
+
+   To enable eZchat for all of your siteaccesses, log in to your eZ publish
+   administration interface, click on the 'Setup' tab, and then click
+   'Extensions' on the left. You will see the list of available extensions.
+   Select the 'ezchat' item and click the 'Apply changes' button.
+   Aternatively, you can also edit the file 'site.ini.append.php' located
+   in the 'settings/override' directory. Add the following line under
+   the [ExtensionSettings] section:
+
+   ActiveExtensions[]=ezchat
+
+   Create the file and/or the section if they do not exist.
+
+   To enable eZchat for only a single siteaccess, open the 'site.ini.append.php'
+   file located in the 'settings/siteaccess/your_siteaccess' directory.
+   Add the following line under the [ExtensionSettings] section:
+
+   ActiveAccessExtensions[]=ezchat
+
+   Create the file and/or the section if they do not exist.
+
+
+7. Clear all the eZ publish caches.
+
+   Log in to your eZ publish administration interface, select the 'Setup' tab,
+   and then click the 'Clear all caches' button. You can also use the
+   developer toolbar (if enabled) located in the right hand side.
+   Simply select 'All caches' from the drop-down list and click the 'Clear' button.
+
+   The other way to clear all caches is to remove the contents of 'var/cache/'
+   and/or 'var/your_siteaccess/cache/' directory. This can either be done
+   manually or by making use of a script.
+
+   Linux users may launch the following script:
+
+   $ ./bin/shell/clearcache.sh --clear-all
+
+   If you have PHP CLI installed, you can also do the following (this script
+   should also work on Windows):
+
+   $ ./bin/php/ezcache.php --clear-all
+
+8. Clear the browser caches
+
+   Browsers usually cache visited pages in a folder somewhere. The next time
+   the same pages are visited, they are loaded faster because some of the
+   information already exists on the local storage device. If you already have
+   eZchat installed and you're upgrading it then you will have to clear the
+   browser's cache.
+
+
+Troubleshooting
+===============
+
+1. Read the FAQ
+   ------------
+
+   Some problems are more common than others. The most common ones are listed
+   in the FAQ Forum on:
+   http://projects.ez.no/ezchat/forum/faq
+
+2. Documentation
+   ------------
+
+   http://projects.ez.no/ezchat/downloads
+
+3. Support
+   -------
+
+   If you have find any problems not handled by this document, FAQ and online
+   documentation you can contact us trough the support system:
+   http://projects.ez.no/ezchat/forum
