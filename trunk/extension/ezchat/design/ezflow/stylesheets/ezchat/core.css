@@ -1,0 +1,229 @@
+/*
+ SOFTWARE NAME: eZchat
+ SOFTWARE RELEASE: 0.1.x
+ COPYRIGHT NOTICE: Copyright (C) 2008 Xavier GOULEY & Maxime THOMAS
+ SOFTWARE LICENSE: GNU General Public License v2.0
+ NOTICE: >
+   This program is free software; you can redistribute it and/or
+   modify it under the terms of version 2.0  of the GNU General
+   Public License as published by the Free Software Foundation.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of version 2.0 of the GNU General
+   Public License along with this program; if not, write to the Free
+   Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+*/
+
+@media screen,projection,handheld {
+
+.chatCopyright {
+	font-size: 70%;
+}
+
+.ezchat-content .attribute-long {
+	padding-bottom: 20px;
+}
+
+.LoginBackBox {
+	float: left;
+	padding: 20px;
+}
+.LogoutBox {
+	float:left;
+	padding: 20px;
+}
+.signinContainer {
+	float:right;
+	width:50%;
+}
+* html .signinContainer {
+	width:49%;
+}
+.loginContainer {
+	float:left;
+	width:50%;
+}
+
+.buttonblock form label, .buttonblock form select, .buttonblock form input {
+	float: left;
+}
+#logoutChannelContainer .defaultbutton {
+	display:block;
+	margin-left:2px;
+}
+#logoutChannelContainer .defaultselect {
+	width:200px;
+	display:block;
+	margin-left:2px;
+	margin-right:2px;
+}
+
+#chatList {
+	border: 1px solid white;
+	overflow:auto;
+	height: 200px;
+	color: #111111;
+	font-size: 90%;
+}
+#chatList div {
+	padding: 2px 5px 2px 5px;
+}
+#chatList div.rowOdd {
+	background-color: #848482;
+	filter: Alpha(Opacity=60);
+	-moz-opacity:.6;
+	-khtml-opacity:.6;
+}
+#chatList div.rowEven {
+	background-color: #9c9c9a;
+	filter: Alpha(Opacity=50);
+	-moz-opacity:.5;
+	-khtml-opacity:.5;
+}
+
+div.rowOdd ul.userMenu {
+	font-size: 80%;
+}
+#inputFieldContainer {
+	width:82%;
+	float:left;
+	padding-bottom: 7px;
+}
+
+#inputFieldContainer textarea {
+	width:100%;
+	height:2.6em;
+	font-size:92%;
+	background-image:url(../../images/search-input-bg.png);
+	background-position:left bottom;
+	background-repeat:repeat-x;
+	border:1px solid #C3C7C5;
+}
+
+#submitButtonContainer {
+	float:right;
+	width:17%;
+	text-align:right;
+}
+
+#submitButtonContainer #messageLengthCounter {
+	font-size:80%;
+}
+
+#emoticonsContainer {
+	padding-bottom: 7px;
+}
+
+#emoticonsContainer img {
+	padding-right: 2px;
+}
+#optionsContainer {
+	width:100%;
+	text-align:right;
+}
+#optionsContainer input {
+	text-decoration: none;
+}
+#optionsContainer input.off {
+	color: #b3b3b1;
+}
+#colorCodesContainer {
+	padding: 3px 5px 3px 0;
+}
+#colorCodesContainer a {
+	padding-left: 0.8em;
+	padding-right: 0.8em;
+}
+#bbCodeContainer input {
+	margin-right: 11px;
+}
+#helpContainer {
+	background-color: #ffffff;
+	filter: Alpha(Opacity=90);
+	-moz-opacity:.9;
+	-khtml-opacity:.9;
+	font-size: 70%;
+	position:relative;
+	right:141px;
+	width:342px;
+}
+* html #helpContainer {
+	float:right;
+	right:139px;
+}
+* html #helpTopContainer {
+	width:213px;
+	overflow:hidden;
+}
+#helpList .rowOdd {
+	background-color: #bfbfbb;
+	filter: Alpha(Opacity=100);
+	-moz-opacity:1.6;
+	-khtml-opacity:1.6;
+}
+#helpList .rowEven {
+	background-color: #dfdfdd;
+	filter: Alpha(Opacity=100);
+	-moz-opacity:1.6;
+	-khtml-opacity:1.6;
+}
+div.defaultselect select {
+	text-decoration:none;
+	background-image:url(../../images/button-bg.png);
+	background-position:left top;
+	background-repeat:repeat-x;
+	border:1px solid #B9B7B7;
+	color:#787979;
+	font-size:0.8em;
+	margin:0.25em 0pt;
+	vertical-align:middle;
+	font-family:Arial,Helvetica,sans-serif;
+}
+
+
+
+
+
+#ajaxChatChatList {
+	border: 1px solid black;
+	border-right: 0px;
+	border-bottom: 0px;
+	overflow:auto;
+	height: 200px;
+	color: #111111;
+	font-size: 90%;
+}
+#ajaxChatChatList div {
+	padding: 2px 5px 2px 5px;
+}
+#ajaxChatChatList div.rowOdd {
+	background-color: #848482;
+	filter: Alpha(Opacity=60);
+	-moz-opacity:.6;
+	-khtml-opacity:.6;
+}
+#ajaxChatChatList div.rowEven {
+	background-color: #9c9c9a;
+	filter: Alpha(Opacity=50);
+	-moz-opacity:.5;
+	-khtml-opacity:.5;
+}
+#ajaxChatCopyright {
+	font-size: 70%;
+}
+#ajaxChatInputField {
+	width:100%;
+	font-size:92%;
+	background-image:url(../../images/button-bg.png);
+	background-position:left bottom;
+	background-repeat:repeat-x;
+	border:1px solid #C3C7C5;
+}
+
+
+}
