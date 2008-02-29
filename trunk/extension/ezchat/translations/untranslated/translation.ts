@@ -126,6 +126,66 @@
         <source>Show picture</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Edit this marker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove this marker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Toggle marker visibility</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send this marker trough chatroom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send directly trough chatroom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy to my markers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close search results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>My markers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add a marker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View all markers on map</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Chatroom markers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show/hide all markers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter marker title:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Change marker title:</source>
+        <translation type="unfinished"></translation>
+    </message>
 
 </context>
 <context>

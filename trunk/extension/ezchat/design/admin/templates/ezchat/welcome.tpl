@@ -12,15 +12,20 @@
 
 			<tr class="bglight">
 			<th width="60%">TODO</th>
-			<td width="40%">...</td>
+			<td width="40%">coming soon...</td>
 			</tr>
 
 			<tr class="bgdark">
-			<th>Coming soon...</th>
+			<th>...</th>
 			<td>...</td>
 			</tr>
 
 		</table>
+
+A small try for GoogleMaps interface:
+{set-block scope=root variable=cache_ttl}0{/set-block}
+{include uri="design:ezchat/gmaps.tpl"}
+
 
 	</div></div></div></div></div></div>
 
