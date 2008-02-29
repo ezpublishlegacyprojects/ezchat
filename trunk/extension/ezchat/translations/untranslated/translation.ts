@@ -122,6 +122,10 @@
         <source>Sign in</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Show picture</source>
+        <translation type="unfinished"></translation>
+    </message>
 
 </context>
 <context>

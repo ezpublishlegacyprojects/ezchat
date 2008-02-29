@@ -114,6 +114,7 @@
 
 		ajaxChat.init(ajaxChatConfig, ajaxChatLang, true, true, true, initialize, finalize);
 
+		ajaxChat.lang['callUserPicture'] = "{'Show picture'|i18n('design/standard/ezchat')}";
 		ezChat.baseURL = "{'/'|ezurl(no)}";
 	// ]]>
 </script>
