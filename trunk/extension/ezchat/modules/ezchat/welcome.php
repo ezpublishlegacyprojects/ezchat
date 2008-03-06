@@ -28,6 +28,7 @@ require_once( "lib/ezutils/classes/ezexecution.php" );
 require_once( "kernel/classes/datatypes/ezuser/ezuser.php" );
 require_once( "lib/ezutils/classes/ezini.php" );
 require_once( "kernel/common/template.php" );
+require_once( "extension/ezchat/ezinfo.php" );
 
 // Init vars
 $Module = $Params["Module"];
@@ -37,8 +38,9 @@ $Result = array();
 $currentUser = eZUser::currentUser();
 $tpl = templateInit();
 
+$info = ezchatInfo::info();
 
-
+$tpl->setVariable('info',$info);
 
 $Result['content'] = $tpl->fetch("design:ezchat/welcome.tpl");
 $Result['left_menu'] = "design:parts/ezchat/menu.tpl";

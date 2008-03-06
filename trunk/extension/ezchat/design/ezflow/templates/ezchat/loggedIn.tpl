@@ -58,6 +58,7 @@
 			{rdelim}
 			ajaxChat.updateButton('audio', 'audioButton');
 			ajaxChat.updateButton('autoScroll', 'autoScrollButton');
+			{*
 			document.getElementById('bbCodeSetting').checked = ajaxChat.getSetting('bbCode');
 			document.getElementById('hyperLinksSetting').checked = ajaxChat.getSetting('hyperLinks');
 			document.getElementById('lineBreaksSetting').checked = ajaxChat.getSetting('lineBreaks');
@@ -83,6 +84,7 @@
 			document.getElementById('blinkSetting').checked = ajaxChat.getSetting('blink');
 			document.getElementById('blinkIntervalSetting').value = ajaxChat.getSetting('blinkInterval');
 			document.getElementById('blinkIntervalNumberSetting').value = ajaxChat.getSetting('blinkIntervalNumber');
+			*}
 		{rdelim}
 
 		function finalize() {ldelim}

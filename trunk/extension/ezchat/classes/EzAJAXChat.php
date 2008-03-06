@@ -48,6 +48,37 @@ class EzAJAXChat extends CustomAJAXChat {
 		return $this->_config['channels'];
 	}
 
+	function parseCustomCommands($text, $textParts) {
+		switch($textParts[0]) {
+
+			// Map for Google Maps objects:
+			case '/map':
+				$this->insertParsedMessageMap($textParts);
+				break;
+
+			default:
+				return false;
+		} // switch
+		return true;
+	}
+
+	function insertParsedMessageMap($textParts) {
+		if(count($textParts) < 4) {
+			$this->insertChatBotMessage(
+				$this->getPrivateMessageID(),
+				'/error CommandNotAllowed'.$textParts[0]
+			);
+		} else {
+			$this->insertCustomMessage(
+				$this->getUserID(),
+				$this->getUserName(),
+				$this->getUserRole(),
+				$this->getChannel(),
+				implode(' ', $textParts)
+			);
+		}
+	}
+
 	function sendXHTMLContent() {
 		require_once(EZ_AJAX_CHAT_PATH.'EzAJAXChatTemplate.php');
 		$httpHeader = new AJAXChatHTTPHeader($this->getConfig('contentEncoding'), $this->getConfig('contentType'));

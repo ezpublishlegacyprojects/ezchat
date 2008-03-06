@@ -41,9 +41,9 @@ if ($Params['UserID']) {
 	$cssClass = $ezchatIni->variable('userPicture','cssClass');
 
 	$user = eZUser::fetch($userId);
-	$userContentObject = $user->contentObject();
-	$userDataMap = $userContentObject->dataMap();
-	$pictureAttribute = $userDataMap[$attributeId];
+	if ($user) $userContentObject = $user->contentObject();
+	if ($userContentObject) $userDataMap = $userContentObject->dataMap();
+	if ($userDataMap) $pictureAttribute = $userDataMap[$attributeId];
 
 	if ($pictureAttribute) {
 		$tpl->setVariable('attribute', $pictureAttribute);
@@ -53,6 +53,9 @@ if ($Params['UserID']) {
 		echo "<li style='background:none!important;list-style-type:none;'>".$content."</li>";
 		eZExecution::cleanExit();
 	}
+
+	echo "";
+	eZExecution::cleanExit();
 }
 
 ?>
