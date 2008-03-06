@@ -34,13 +34,13 @@
 }
 
 #gmaps-main {
-	width:800px;
+	width:740px;
 }
 #gmaps-controls {
-	width:246px; height: 26em; float: right; padding-left: 4px;
+	width:206px; height: 26em; float: right; padding-left: 4px;
 }
 #map {
-	width: 550px;
+	width: 530px;
 	height: 26em;
 	float: left;
 }
@@ -60,7 +60,7 @@ a.gmapheader-button {
 
 div.gmaplist {
 	font-size: 72%!important;
-	width: 237px;
+	width: 197px;
 	height: 14em;
 	overflow: auto;
 				xbackground: green;

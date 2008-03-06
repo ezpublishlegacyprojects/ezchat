@@ -69,12 +69,9 @@ class EzAJAXChat extends CustomAJAXChat {
 				'/error CommandNotAllowed'.$textParts[0]
 			);
 		} else {
-			$this->insertCustomMessage(
-				$this->getUserID(),
-				$this->getUserName(),
-				$this->getUserRole(),
+			$this->insertChatBotMessage(
 				$this->getChannel(),
-				implode(' ', $textParts)
+				'/map '.$this->getUserName().' '.implode(' ', array_slice($textParts, 1))
 			);
 		}
 	}

@@ -38,8 +38,4 @@
 
 	</div></div></div></div></div></div>
 
-A small try for GoogleMaps interface:
-{set-block scope=root variable=cache_ttl}0{/set-block}
-{include uri="design:ezchat/gmaps.tpl"}
-
 </div>
