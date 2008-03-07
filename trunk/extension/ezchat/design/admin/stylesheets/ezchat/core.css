@@ -28,7 +28,7 @@
 #chatList {
 	border: 1px solid white;
 	overflow:auto;
-	height: 26em;
+	height: 20em;
 	color: #111111;
 	font-size: 90%;
 }
@@ -109,6 +109,13 @@ ul.bulletlist {
 	display:block;
 	padding-left:1em;
 }
+#gMapsButton {
+	background-image:url(../../images/green-bullet.gif);
+	background-position:0em 0.4em;
+	background-repeat:no-repeat;
+	display:block;
+	padding-left:1em;
+}
 .off {
 	background-image:url(../../images/red-bullet.gif)!important;
 }
@@ -146,21 +153,30 @@ ul.bulletlist {
 	-khtml-opacity:1.6;
 }
 #channelSelection {
-	width:16em;
-	float:right;
-	margin-right:5em;
-	margin-top:0.4em;
+	width:11em;
+	float:left;
+	display:inline;
+	margin-right:0.4em;
+	margin-top:0em;
+	margin-bottom:0.2em;
+}
+div.lessmore {
+	margin-right: 0.6em;
+}
+div.lessmore a {
+	margin-top: 0.4em;
 }
 #chatrightcolumn {
 	float:right;
-	width:29%;
+	width:26%;
 }
 #chatrightcolumn div.rightcolumn {
 	white-space:nowrap;
-	padding:1em;
+	padding:0em 0.6em 1em 0.6em;
 }
-#chatrightcolumn h4 {
-	padding:0.4em 0.75em 0em 0.75em;
+#chatrightcolumn h4, h4.whiteTitle {
+	padding:0.4em 0.75em 0.4em 0.75em;
+	margin-bottom:0em;
 	white-space:nowrap;
 	color:white;
 }
@@ -187,10 +203,10 @@ ul.bulletlist {
 }
 div.chatleftcolumn {
 	float:left;
-	width:71%;
+	width:74%;
 }
 div.chatleftcolumn div.leftcolumn {
-	padding: 1em 0em 1em 1em;
+	padding: 0em 0em 1em 0.6em;
 }
 #settingsList {
 	font-size: 76%;
@@ -205,6 +221,14 @@ div.chatleftcolumn div.leftcolumn {
 	font-size:76%!important;
 	height:1.5em!important;
 }
-
+#gmap-box {
+	padding-top:0.6em;
+}
+div.low-padding {
+	padding:0px 1px 0px 1px;
+}
+div.low-padding div.header-subline {
+	margin-right:0px;
+}
 
 }

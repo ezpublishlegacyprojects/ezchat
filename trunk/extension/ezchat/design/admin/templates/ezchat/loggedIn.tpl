@@ -120,12 +120,7 @@
 </script>
 
 <div class="context-block">
-<div class="box-header"><div class="box-tc"><div class="box-ml"><div class="box-mr"><div class="box-tl"><div class="box-tr">
-	<select id="channelSelection" onchange="ajaxChat.switchChannel(this.options[this.selectedIndex].value);">[CHANNEL_OPTIONS/]</select>
-	<h1 class="context-title">[LANG]title[/LANG]</h1>
-	<div class="header-mainline"></div>
-</div></div></div></div></div></div>
-<div class="box-bc"><div class="box-ml"><div class="box-mr"><div class="box-content">
+
 
 	{* START RIGHT COLUMN *}
 	<div id="chatrightcolumn"><div class="rightcolumn">
@@ -133,7 +128,8 @@
 			<div class="box-header"><div class="box-tc"><div class="box-ml"><div class="box-mr"><div class="box-tl"><div class="box-tr">
 				<h4>
 					<a class="showhide" href="#" onclick="toggleContainer('tools1Container', '');toggleContainer('tools2Container', '');" title="{'deploy/shrink tools'|i18n('design/admin/ezchat')}"><span class="bracket">[</span>+/-<span class="bracket">]</span></a>
-					{'Chatroom window'|i18n('design/admin/ezchat')}
+					{*'Chatroom window'|i18n('design/admin/ezchat')*}
+					<select id="channelSelection" onchange="ajaxChat.switchChannel(this.options[this.selectedIndex].value);">[CHANNEL_OPTIONS/]</select>
 				</h4>
 				<div class="break"></div>
 			</div></div></div></div></div></div>
@@ -141,6 +137,7 @@
 				<ul class="bulletlist">
 					<li id="audioButton"><div>    <a href="#" onclick="ajaxChat.toggleSetting('audio', 'audioButton');" title="[LANG]toggleAudio[/LANG]">[LANG]toggleAudio[/LANG]</a></div></li>
 					<li id="autoScrollButton"><div>    <a href="#" onclick="ajaxChat.toggleSetting('autoScroll', 'autoScrollButton');" title="[LANG]toggleAutoScroll[/LANG]">[LANG]toggleAutoScroll[/LANG]</a></div></li>
+					<li id="gMapsButton" class="off"><div>    <a href="#" onclick="ajaxChat.toggleSetting('help', 'gMapsButton');toggleContainer('gmap-box', '');gMapChat.map.checkResize();" title="[LANG]toggleHelp[/LANG]">Toggle gMaps ###</a></div></li>
 					<li id="helpButton" class="off"><div>    <a href="#" onclick="ajaxChat.toggleSetting('help', 'helpButton');toggleContainer('helpContainer', '');" title="[LANG]toggleHelp[/LANG]">[LANG]toggleHelp[/LANG]</a></div></li>
 				</ul>
 				<div class="block">
@@ -148,12 +145,12 @@
 					<input type="button" class="button smallbutton" value="[LANG]bbCodeLabelCode[/LANG]" title="[LANG]bbCodeTitleCode[/LANG]" onclick="ajaxChat.insertBBCode('code');"/>
 					<input type="button" class="button smallbutton" value="[LANG]bbCodeLabelURL[/LANG]" title="[LANG]bbCodeTitleURL[/LANG]" onclick="ajaxChat.insertBBCode('url');"/>
 				</div>
-				<div id="tools2Container" class="block">
+				<div id="tools2Container" class="block" style="display:none;">
 					<input type="button" class="button smallbutton" value="[LANG]bbCodeLabelBold[/LANG]" title="[LANG]bbCodeTitleBold[/LANG]" onclick="ajaxChat.insertBBCode('b');" style="font-weight:bold;"/>
 					<input type="button" class="button smallbutton" value="[LANG]bbCodeLabelItalic[/LANG]" title="[LANG]bbCodeTitleItalic[/LANG]" onclick="ajaxChat.insertBBCode('i');" style="font-style:italic;"/>
 					<input type="button" class="button smallbutton" value="[LANG]bbCodeLabelUnderline[/LANG]" title="[LANG]bbCodeTitleUnderline[/LANG]" onclick="ajaxChat.insertBBCode('u');" style="text-decoration:underline!important;"/>
 				</div>
-				<div id="tools1Container" class="block iconblock">
+				<div id="tools1Container" class="block iconblock" style="display:none;">
 					<div id="emoticonsContainer" dir="ltr"></div>
 					<div id="colorCodesContainer" dir="ltr"></div>
 				</div>
@@ -298,17 +295,38 @@
 			</div>
 		</div></div>
 
-		<div class="box-bc"><div class="box-ml"><div class="box-mr"><div class="box-bl"><div class="box-br"><div class="box-content"></div></div></div></div></div></div>
+		<div class="controlbar">
+		<div class="box-bc"><div class="box-ml"><div class="box-mr"><div class="box-tc"><div class="box-bl"><div class="box-br">
+		<div class="block">
+		    <!--
+				Please retain the full copyright notice below including the link to blueimp.net.
+				This not only gives respect to the amount of time given freely by the developer
+				but also helps build interest, traffic and use of AJAX Chat.
+
+				Thanks,
+				Sebastian Tschan
+			//-->
+			<div class="chatCopyright"><a href="https://blueimp.net/ajax/">AJAX Chat</a> &copy; <a href="https://blueimp.net">blueimp.net</a></div>
+			<div id="flashInterfaceContainer"></div>
+		</div>
+		</div></div></div></div></div></div>
+		</div>
+
 	</div></div>
 	{* END RIGHT COLUMN *}
 
 	{* START LEFT COLUMN *}
 	<div class="chatleftcolumn"><div class="leftcolumn">
-		<div class="box-ml"><div class="box-mr">
-			<div class="header-subline chatheader">
-				<a class="showhide" href="#" onclick="document.getElementById('chatList').style['height']='26em';" title="{'deploy chatroom window'|i18n('design/admin/ezchat')}"><span class="bracket">[</span>+<span class="bracket">]</span></a>
+
+		<div class="box-header"><div class="box-tc"><div class="box-ml"><div class="box-mr"><div class="box-tl"><div class="box-tr">
+			<div class="lessmore">
+				<a class="showhide" href="#" onclick="document.getElementById('chatList').style['height']='20em';" title="{'deploy chatroom window'|i18n('design/admin/ezchat')}"><span class="bracket">[</span>+<span class="bracket">]</span></a>
 				<a class="showhide" href="#" onclick="document.getElementById('chatList').style['height']='9em';" title="{'shrink chatroom window'|i18n('design/admin/ezchat')}"><span class="bracket">[</span>-<span class="bracket">]</span></a>
 			</div>
+			<h1 class="context-title">[LANG]title[/LANG]</h1>
+			<div class="header-subline"></div>
+		</div></div></div></div></div></div>
+		<div class="box-ml"><div class="box-mr">
 			<div class="box-content chatBlock">
 				<div id="chatList"></div>
 		  	</div>
@@ -427,35 +445,23 @@
 		</div></div></div></div></div></div>
 		</div>
 
+		<div class="break"></div>
 
-		A small try for GoogleMaps interface:
-		{set-block scope=root variable=cache_ttl}0{/set-block}
-		{include uri="design:ezchat/gmaps.tpl"}
+		{* A small try for GoogleMaps interface: *}
+		<div id="gmap-box" style="display:none;">
+			<div class="box-header"><div class="box-tc"><div class="box-ml"><div class="box-mr"><div class="box-tl"><div class="box-tr">
+				<h4 class="whiteTitle">Google MAP ! ####</h4>
+			</div></div></div></div></div></div>
 
+			{set-block scope=root variable=cache_ttl}0{/set-block}
+			{include uri="design:ezchat/gmaps.tpl"}
+
+		</div>
 
 	</div></div>
 	{* END LEFT COLUMN *}
 	<div class="break"></div>
 
-</div></div></div>
-
-<div class="controlbar">
-<div class="box-bc"><div class="box-ml"><div class="box-mr"><div class="box-tc"><div class="box-bl"><div class="box-br">
-<div class="block">
-    <!--
-		Please retain the full copyright notice below including the link to blueimp.net.
-		This not only gives respect to the amount of time given freely by the developer
-		but also helps build interest, traffic and use of AJAX Chat.
-
-		Thanks,
-		Sebastian Tschan
-	//-->
-	<div class="chatCopyright"><a href="https://blueimp.net/ajax/">AJAX Chat</a> &copy; <a href="https://blueimp.net">blueimp.net</a></div>
-	<div id="flashInterfaceContainer"></div>
 </div>
-</div></div></div></div></div></div>
-</div>
-
-</div></div>
 
 <div class="break"></div>

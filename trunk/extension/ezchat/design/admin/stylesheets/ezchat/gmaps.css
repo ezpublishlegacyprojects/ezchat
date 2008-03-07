@@ -33,14 +33,15 @@
 	font-size: 72%!important;
 }
 
-#gmaps-main {
-	width:740px;
-}
 #gmaps-controls {
-	width:206px; height: 26em; float: right; padding-left: 4px;
+	width:27%;
+	height: 26em;
+	float: right;
+	padding-left: 0px;
+	background-color: white;
 }
 #map {
-	width: 530px;
+	width: 73%;
 	height: 26em;
 	float: left;
 }
