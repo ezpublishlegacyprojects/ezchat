@@ -186,6 +186,10 @@
         <source>Change marker title:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>%1 shows a point on the map: </source>
+        <translation type="unfinished"></translation>
+    </message>
 
 </context>
 <context>

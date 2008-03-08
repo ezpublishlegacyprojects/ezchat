@@ -48,7 +48,7 @@ var ezChat = {
 	ajaxChatReference: null,
 	baseURL: null,
 	userPictureLoaded: new Array(),
-	strMapSent: '<span dir="ltr" onclick="ajaxChat.insertText(this.firstChild.nodeValue);">%s</span> montre un point sur la carte: <a href="javascript:gMapChat.addYourPOI(new GLatLng(%s, %s), \'%s\');">%s</a>',
+	strMapSent: '<a href="javascript:gMapChat.addYourPOI(new GLatLng(%a, %b), \'%c\');">%c</a>',
 
 	callUserPicture: function(ajaxChat, userID) {
 		this.ajaxChatReference = ajaxChat;
@@ -94,9 +94,9 @@ var ezChat = {
 	replaceCommandMap: function(textParts) {
 		return	'<span class="chatBotMessage">'
 				+ this.strMapSent.replace(/%s/, textParts[1])
-								.replace(/%s/, textParts[2])
-								.replace(/%s/, textParts[3])
-								.replace(/%s/, textParts[4]).replace(/%s/, textParts[4])
+								.replace(/%a/, textParts[2])
+								.replace(/%b/, textParts[3])
+								.replace(/%c/, decodeURIComponent(textParts[4])).replace(/%c/, decodeURIComponent(textParts[4]))
 				+ '</span>';
 	}
 
@@ -219,7 +219,7 @@ var gMapChat = {
 		var options = {
 			title: text,
 			icon: this.buildSmallIcon("colors/orange_marker.png"),
-			draggable: true,
+			draggable: false,
 			dragCrossMove: true
 		};
 		var marker = new GMarker(center, options);
@@ -310,8 +310,7 @@ var gMapChat = {
 	},
 
 	SendPOIFromSearch: function(lat, lng, text) {
-		ajaxChat.sendMessageWrapper('/map '+lat+' '+lng+' '+Text);
-		//TODO : remplacer le texte par un texte encodé ?
+		ajaxChat.sendMessageWrapper('/map '+lat+' '+lng+' '+encodeURIComponent(text));
 	},
 
 	viewMyPOIs: function() {

@@ -137,7 +137,7 @@
 				<ul class="bulletlist">
 					<li id="audioButton"><div>    <a href="#" onclick="ajaxChat.toggleSetting('audio', 'audioButton');" title="[LANG]toggleAudio[/LANG]">[LANG]toggleAudio[/LANG]</a></div></li>
 					<li id="autoScrollButton"><div>    <a href="#" onclick="ajaxChat.toggleSetting('autoScroll', 'autoScrollButton');" title="[LANG]toggleAutoScroll[/LANG]">[LANG]toggleAutoScroll[/LANG]</a></div></li>
-					<li id="gMapsButton" class="off"><div>    <a href="#" onclick="ajaxChat.toggleSetting('help', 'gMapsButton');toggleContainer('gmap-box', '');gMapChat.map.checkResize();" title="[LANG]toggleHelp[/LANG]">Toggle gMaps ###</a></div></li>
+					<li id="gMapsButton" class="off"><div>    <a href="#" onclick="ajaxChat.toggleSetting('help', 'gMapsButton');toggleContainer('gmap-box', '');gMapLoad();" title="[LANG]toggleHelp[/LANG]">Toggle gMaps ###</a></div></li>
 					<li id="helpButton" class="off"><div>    <a href="#" onclick="ajaxChat.toggleSetting('help', 'helpButton');toggleContainer('helpContainer', '');" title="[LANG]toggleHelp[/LANG]">[LANG]toggleHelp[/LANG]</a></div></li>
 				</ul>
 				<div class="block">
