@@ -35,6 +35,7 @@ class EzAJAXChatTemplate extends AJAXChatTemplate {
 			$tpl->setVariable( "logout", $this->ajaxChat->getRequestVar('logout') );
 			$tpl->setVariable( "loginURL", $_REQUEST['loginURL'] );
 			$tpl->setVariable( "channel", $this->ajaxChat->getRequestVar('channelName') );
+			$tpl->setVariable( "gMapsInterface", $this->ajaxChat->getConfig('gMapsInterface') );
 			if ($_REQUEST['view_parameters']) $tpl->setVariable( "view_parameters", $_REQUEST['view_parameters'] );
 			$this->_content = $tpl->fetch( "design:".$this->_templateFile );
 		}

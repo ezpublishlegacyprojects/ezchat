@@ -27,15 +27,15 @@
 	</div>
 	<div class="element">
 		{'Allow private messages'|i18n( 'ezchat/datatypes/chatroom' )}:
-		{$attribute.content.option_list.0.value||choose( 'No'|i18n( 'design/standard/content/datatype' ), 'Yes'|i18n( 'design/standard/content/datatype') )}
+		{$attribute.content.option_list.0.value|choose( 'No'|i18n( 'design/standard/content/datatype' ), 'Yes'|i18n( 'design/standard/content/datatype') )}
 	</div>
 	<div class="element">
 		{'Show channel messages'|i18n( 'ezchat/datatypes/chatroom' )}:
-		{$attribute.content.option_list.1.value||choose( 'No'|i18n( 'design/standard/content/datatype' ), 'Yes'|i18n( 'design/standard/content/datatype') )}
+		{$attribute.content.option_list.1.value|choose( 'No'|i18n( 'design/standard/content/datatype' ), 'Yes'|i18n( 'design/standard/content/datatype') )}
 	</div>
 	<div class="element">
 		{'Request messages prior channel enter'|i18n( 'ezchat/datatypes/chatroom' )}:
-		{$attribute.content.option_list.2.value||choose( 'No'|i18n( 'design/standard/content/datatype' ), 'Yes'|i18n( 'design/standard/content/datatype') )}
+		{$attribute.content.option_list.2.value|choose( 'No'|i18n( 'design/standard/content/datatype' ), 'Yes'|i18n( 'design/standard/content/datatype') )}
 	</div>
 </div>
 
@@ -55,6 +55,13 @@
 					'Saturday'|i18n( 'ezchat/datatypes/chatroom') ).$item}
 			{delimiter}, {/delimiter}
 		{/foreach}
+	</div>
+</div>
+
+<div class="block inline">
+	<div class="element">
+		{'Deactivate Google Maps tools'|i18n( 'ezchat/datatypes/chatroom' )}:
+		{$attribute.content.option_list.4.value|choose( 'No'|i18n( 'design/standard/content/datatype' ), 'Yes'|i18n( 'design/standard/content/datatype') )}
 	</div>
 </div>
 

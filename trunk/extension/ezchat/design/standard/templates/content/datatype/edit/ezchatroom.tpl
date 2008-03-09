@@ -54,38 +54,44 @@
 
 		<div class="break"></div>
 
-<table class="list" style="width:350px" cellspacing="0">
-	<tbody>
-		<tr>
-		    <th>{'Opening hours'|i18n( 'ezchat/datatypes/chatroom' )}</th>
-		    <th>{'Opening days'|i18n( 'ezchat/datatypes/chatroom' )}</th>
-		</tr>
-		<tr class="bglight">
-			<td>
-				<input type="hidden" name="{$attribute_base}_ezchatroom_hours_array_{$attribute.id}" value="" />
-				<select id="ezcoa-{if ne( $attribute_base, 'ContentObjectAttribute' )}{$attribute_base}-{/if}{$attribute.contentclassattribute_id}_{$attribute.contentclass_attribute_identifier}" class="ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" name="{$attribute_base}_ezchatroom_hours_array_{$attribute.id}[]" size="6" multiple="multiple">
-					{section loop=array('00','01','02','03','04','05','06','07','08','09',10,11,12,13,14,15,16,17,18,19,20,21,22,23)}
-						<option value="{$:item}" {section show=and( $start_hour|le($:item), $stop_hour|gt($:item) )}selected="selected"{/section}>{$:item} h</option>
-					{/section}
-				</select>
-			</td>
-			<td>
-				<input type="hidden" name="{$attribute_base}_ezchatroom_days_array_{$attribute.id}" value="" />
-				<select id="ezcoa-{if ne( $attribute_base, 'ContentObjectAttribute' )}{$attribute_base}-{/if}{$attribute.contentclassattribute_id}_{$attribute.contentclass_attribute_identifier}" class="ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" name="{$attribute_base}_ezchatroom_days_array_{$attribute.id}[]" size="6" multiple="multiple">
-					<option value="0" {section show=$days|contains('0')}selected="selected"{/section}>{'Sunday'|i18n( 'ezchat/datatypes/chatroom' )}</option>
-					<option value="1" {section show=$days|contains(1)}selected="selected"{/section}>{'Monday'|i18n( 'ezchat/datatypes/chatroom' )}</option>
-					<option value="2" {section show=$days|contains(2)}selected="selected"{/section}>{'Tuesday'|i18n( 'ezchat/datatypes/chatroom' )}</option>
-					<option value="3" {section show=$days|contains(3)}selected="selected"{/section}>{'Wednesday'|i18n( 'ezchat/datatypes/chatroom' )}</option>
-					<option value="4" {section show=$days|contains(4)}selected="selected"{/section}>{'Tursday'|i18n( 'ezchat/datatypes/chatroom' )}</option>
-					<option value="5" {section show=$days|contains(5)}selected="selected"{/section}>{'Friday'|i18n( 'ezchat/datatypes/chatroom' )}</option>
-					<option value="6" {section show=$days|contains(6)}selected="selected"{/section}>{'Saturday'|i18n( 'ezchat/datatypes/chatroom' )}</option>
-				</select>
-			</td>
-		</tr>
-	</tbody>
-</table>
+		<table class="list" style="width:350px" cellspacing="0">
+			<tbody>
+				<tr>
+				    <th>{'Opening hours'|i18n( 'ezchat/datatypes/chatroom' )}</th>
+				    <th>{'Opening days'|i18n( 'ezchat/datatypes/chatroom' )}</th>
+				</tr>
+				<tr class="bglight">
+					<td>
+						<input type="hidden" name="{$attribute_base}_ezchatroom_hours_array_{$attribute.id}" value="" />
+						<select id="ezcoa-{if ne( $attribute_base, 'ContentObjectAttribute' )}{$attribute_base}-{/if}{$attribute.contentclassattribute_id}_{$attribute.contentclass_attribute_identifier}" class="ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" name="{$attribute_base}_ezchatroom_hours_array_{$attribute.id}[]" size="6" multiple="multiple">
+							{section loop=array('00','01','02','03','04','05','06','07','08','09',10,11,12,13,14,15,16,17,18,19,20,21,22,23)}
+								<option value="{$:item}" {section show=and( $start_hour|le($:item), $stop_hour|gt($:item) )}selected="selected"{/section}>{$:item} h</option>
+							{/section}
+						</select>
+					</td>
+					<td>
+						<input type="hidden" name="{$attribute_base}_ezchatroom_days_array_{$attribute.id}" value="" />
+						<select id="ezcoa-{if ne( $attribute_base, 'ContentObjectAttribute' )}{$attribute_base}-{/if}{$attribute.contentclassattribute_id}_{$attribute.contentclass_attribute_identifier}" class="ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" name="{$attribute_base}_ezchatroom_days_array_{$attribute.id}[]" size="6" multiple="multiple">
+							<option value="0" {section show=$days|contains('0')}selected="selected"{/section}>{'Sunday'|i18n( 'ezchat/datatypes/chatroom' )}</option>
+							<option value="1" {section show=$days|contains(1)}selected="selected"{/section}>{'Monday'|i18n( 'ezchat/datatypes/chatroom' )}</option>
+							<option value="2" {section show=$days|contains(2)}selected="selected"{/section}>{'Tuesday'|i18n( 'ezchat/datatypes/chatroom' )}</option>
+							<option value="3" {section show=$days|contains(3)}selected="selected"{/section}>{'Wednesday'|i18n( 'ezchat/datatypes/chatroom' )}</option>
+							<option value="4" {section show=$days|contains(4)}selected="selected"{/section}>{'Tursday'|i18n( 'ezchat/datatypes/chatroom' )}</option>
+							<option value="5" {section show=$days|contains(5)}selected="selected"{/section}>{'Friday'|i18n( 'ezchat/datatypes/chatroom' )}</option>
+							<option value="6" {section show=$days|contains(6)}selected="selected"{/section}>{'Saturday'|i18n( 'ezchat/datatypes/chatroom' )}</option>
+						</select>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 
+		<div class="break"></div>
 
+		<div class="element">
+			<label>
+				<input id="ezcoa-{if ne( $attribute_base, 'ContentObjectAttribute' )}{$attribute_base}-{/if}{$attribute.contentclassattribute_id}_{$attribute.contentclass_attribute_identifier}" class="ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" type="checkbox" name="{$attribute_base}_ezchatroom_deactivateGMaps_boolean_{$attribute.id}" {$attribute.content.option_list.4.value|choose( '', 'checked="checked"' )} value="" />{'Deactivate Google Maps tools'|i18n( 'ezchat/datatypes/chatroom' )}
+			</label>
+		</div>
 
 	</div>
 

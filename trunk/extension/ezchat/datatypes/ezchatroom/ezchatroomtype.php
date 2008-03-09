@@ -172,6 +172,14 @@ class ezchatroomtype extends eZDataType
             $XMLParams->addOption("days", $idString);
         } else $XMLParams->addOption("days", array());
 
+        if ( $http->hasPostVariable( $base . "_ezchatroom_deactivateGMaps_boolean_" . $contentObjectAttribute->attribute( "id" ) )) {
+            $data = $http->postVariable( $base . "_ezchatroom_deactivateGMaps_boolean_" . $contentObjectAttribute->attribute( "id" ) );
+            if ( isset( $data ) && $data !== '0' && $data !== 'false' )
+                $XMLParams->addOption("deactivateGMaps",1);
+            else
+                $XMLParams->addOption("deactivateGMaps",0);
+        } else $XMLParams->addOption("deactivateGMaps",0);
+
         $contentObjectAttribute->setAttribute( 'data_text', $XMLParams->xmlString() );
 		$contentObjectAttribute->setContent( $XMLParams );
 

@@ -77,9 +77,12 @@
         <source>Saturday</source>
         <translation type="unfinished"></translation>
     </message>
-
     <message>
         <source>Opened from %1h00 to %2h00.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deactivate Google Maps tools</source>
         <translation type="unfinished"></translation>
     </message>
 

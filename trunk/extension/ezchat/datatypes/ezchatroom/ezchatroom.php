@@ -217,6 +217,7 @@ class eZChatroom {
 		$_REQUEST['overridePolicies']['showChannelMessages'] = ($option_list[1]['value']==1);
 		$_REQUEST['overridePolicies']['allowUserMessageDelete'] = $this->allowUserMessageDelete;
 		$_REQUEST['overridePolicies']['requestMessagesPriorChannelEnter'] = ($option_list[2]['value']==1);
+		$_REQUEST['overridePolicies']['deactivateGMaps'] = ($option_list[4]['value']==1);
 		$_REQUEST['loginURL'] = $this->loginURL;
 
 		// Cases of use

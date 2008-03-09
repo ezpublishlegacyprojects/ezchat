@@ -22,14 +22,20 @@
 //
 //
 
-class ezdhtmlInfo
+class ezchatInfo
 {
     static function info()
     {
-        return array( 'name' => "eZchat",
-                      'version' => "0.1",
-                      'copyright' => "Copyright (C) 2008 Xavier GOULEY & Maxime THOMAS",
-                      'license' => "GNU General Public License v2.0"
+        return array( 'Name' => "eZchat",
+                      'Version' => "0.1",
+                      'Copyright' => "Copyright (C) 2008 Xavier GOULEY & Maxime THOMAS",
+                      'License' => "GNU General Public License v2.0",
+        			  'For more information' => 'http://www.wascou.org/',
+        			  'Includes the following third-party software' => array( 'Name' => 'Ajax Chat',
+                                                                              'Version' => '0.7.3',
+        																	  'Copyright' => 'Copyright (C) 2008 blueimp.net',
+                                                                              'License' => 'GNU AFFERO GENERAL PUBLIC LICENSE v3 - 19 November 2007',
+                                                                              'For more information' => 'http://blueimp.net/' )
                     );
     }
 }

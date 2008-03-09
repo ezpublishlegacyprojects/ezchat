@@ -165,7 +165,7 @@ if (	$_REQUEST['overridePolicies'] &&
 		!in_array('Any', $_REQUEST['overridePolicies']) &&
 		!in_array('requestMessagesPriorChannelEnter', $_REQUEST['overridePolicies'])
 	) $config['requestMessagesPriorChannelEnter'] = false;
-//TODO: Si le channel est privé, alors false automatique serait mieux, non ?
+//TODO: Si le channel est prive, alors false automatique serait mieux, non ?
 
 // Max time difference in hours for messages to display on each request:
 if ( $ezchatIni->hasVariable( 'generalDefaults', 'requestMessagesTimeDiff' ) ) $config['requestMessagesTimeDiff'] = $ezchatIni->variable( 'generalDefaults', 'requestMessagesTimeDiff' );
@@ -221,4 +221,14 @@ if ( $ezchatIni->hasVariable( 'serverConnection', 'socketServerPort' ) ) $config
 else $config['socketServerPort'] = 1935;
 // This ID can be used to distinguish between different chat installations using the same socket server:
 $config['socketServerChatID'] = 0;
+
+$config['gMapsInterface'] = false;
+if ( $ezchatIni->hasVariable( 'gmapsSettings', 'gMapsInterface' ) ) {
+	$config['gMapsInterface'] = ($ezchatIni->variable( 'gmapsSettings', 'gMapsInterface' )=="enabled");
+	if (	$_REQUEST['overridePolicies'] &&
+			in_array('deactivateGMaps', $_REQUEST['overridePolicies'])
+		) $config['gMapsInterface'] = ! $_REQUEST['overridePolicies']['deactivateGMaps'];
+}
+
+
 ?>
