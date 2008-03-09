@@ -303,10 +303,9 @@ var gMapChat = {
 	},
 
 	sendMyPOI: function(index) {
-		//TODO: on va envoyer dans une chaine de char, les infos :
-		//"lat", "lng", "title avec les \" escapees"
-		//en option, on pourra aussi imaginer envoyer le zoom preferentiel
-		ajaxChat.sendMessageWrapper('/map 1 2 Toto');
+		latLng = this.myPOIs[index].getLatLng();
+		text = this.myPOIs[index].getTitle()
+		ajaxChat.sendMessageWrapper('/map '+latLng.lat()+' '+latLng.lng()+' '+encodeURIComponent(text));
 	},
 
 	SendPOIFromSearch: function(lat, lng, text) {

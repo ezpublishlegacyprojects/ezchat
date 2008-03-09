@@ -21,6 +21,7 @@
 *}
 
 {set-block scope=root variable=cache_ttl}0{/set-block}
+{default gMapsInterface=false()}
 
 
 <script src="{ezroot(no)}extension/ezchat/ajaxchat/js/chat.js" type="text/javascript" charset="UTF-8"></script>
@@ -89,6 +90,16 @@
 			ajaxChat.setSetting('onlineList', (document.getElementById('onlineListContainer').offsetWidth > 0));
 		{rdelim}
 
+		var gmapLoaded = false;
+		function loadGMap() {ldelim}
+			ajaxChat.toggleSetting('help', 'gMapsButton');
+			toggleContainer('gmap-box', '');
+			if (gmapLoaded == false) {ldelim}
+				gMapLoad();
+				gmapLoaded = true;
+			{rdelim}
+		{rdelim}
+
 		ajaxChatConfig.loginChannelID = parseInt('[LOGIN_CHANNEL_ID/]');
 		ajaxChatConfig.sessionName = '[SESSION_NAME/]';
 		ajaxChatConfig.cookieExpiration = parseInt('[COOKIE_EXPIRATION/]');
@@ -116,6 +127,11 @@
 
 		ajaxChat.lang['callUserPicture'] = "{'Show picture'|i18n('design/standard/ezchat')}";
 		ezChat.baseURL = "{'/'|ezurl(no)}";
+		{if $gMapsInterface}
+			ezChat.strMapSent = "{'%1 shows a point on the map: '|i18n('design/standard/ezchat','',array('<span dir=\'ltr\' onclick=\'ajaxChat.insertText(this.firstChild.nodeValue);\'>%s</span>'))}"+ezChat.strMapSent;
+		{else}
+			ezChat.strMapSent = "{'%1 shows a point on the map: '|i18n('design/standard/ezchat','',array('<span dir=\'ltr\' onclick=\'ajaxChat.insertText(this.firstChild.nodeValue);\'>%s</span>'))}<a href=\"javascript:alert('{'This functionality is disabled for this moment.'|i18n('design/standard/ezchat')}');\">%c</a>";
+		{/if}
 	// ]]>
 </script>
 
@@ -137,7 +153,7 @@
 				<ul class="bulletlist">
 					<li id="audioButton"><div>    <a href="#" onclick="ajaxChat.toggleSetting('audio', 'audioButton');" title="[LANG]toggleAudio[/LANG]">[LANG]toggleAudio[/LANG]</a></div></li>
 					<li id="autoScrollButton"><div>    <a href="#" onclick="ajaxChat.toggleSetting('autoScroll', 'autoScrollButton');" title="[LANG]toggleAutoScroll[/LANG]">[LANG]toggleAutoScroll[/LANG]</a></div></li>
-					<li id="gMapsButton" class="off"><div>    <a href="#" onclick="ajaxChat.toggleSetting('help', 'gMapsButton');toggleContainer('gmap-box', '');gMapLoad();" title="[LANG]toggleHelp[/LANG]">Toggle gMaps ###</a></div></li>
+					{if $gMapsInterface}<li id="gMapsButton" class="off"><div>    <a href="#" onclick="loadGMap();" title="[LANG]toggleHelp[/LANG]">Toggle gMaps ###</a></div></li>{/if}
 					<li id="helpButton" class="off"><div>    <a href="#" onclick="ajaxChat.toggleSetting('help', 'helpButton');toggleContainer('helpContainer', '');" title="[LANG]toggleHelp[/LANG]">[LANG]toggleHelp[/LANG]</a></div></li>
 				</ul>
 				<div class="block">
@@ -447,16 +463,15 @@
 
 		<div class="break"></div>
 
-		{* A small try for GoogleMaps interface: *}
-		<div id="gmap-box" style="display:none;">
-			<div class="box-header"><div class="box-tc"><div class="box-ml"><div class="box-mr"><div class="box-tl"><div class="box-tr">
-				<h4 class="whiteTitle">Google MAP ! ####</h4>
-			</div></div></div></div></div></div>
-
-			{set-block scope=root variable=cache_ttl}0{/set-block}
-			{include uri="design:ezchat/gmaps.tpl"}
-
-		</div>
+		{* GoogleMaps interface: *}
+		{if $gMapsInterface}
+			<div id="gmap-box" style="display:none;">
+				<div class="box-header"><div class="box-tc"><div class="box-ml"><div class="box-mr"><div class="box-tl"><div class="box-tr">
+					<h4 class="whiteTitle">Google MAP ! ####</h4>
+				</div></div></div></div></div></div>
+				{include uri="design:ezchat/gmaps.tpl"}
+			</div>
+		{/if}
 
 	</div></div>
 	{* END LEFT COLUMN *}
@@ -465,3 +480,5 @@
 </div>
 
 <div class="break"></div>
+
+{/default}

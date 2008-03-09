@@ -9,7 +9,9 @@
     <script type="text/javascript">
     //<![CDATA[
 
-    function gMapLoad() {ldelim}
+    function gMapLoad(	defaultStartingLocationLat={$defaultStartingLocationLat} ,
+    					defaultStartingLocationLng={$defaultStartingLocationLng} ,
+    					defaultStartingLocationZoom={$defaultStartingLocationZoom} ) {ldelim}
       if (GBrowserIsCompatible()) {ldelim}
 		gMapChat.imagesRoot = "{'/extension/ezchat/design/standard/images/gmaps/'|ezroot(no)}";
 		gMapChat.strEdit = "{'Edit this marker'|i18n('design/standard/ezchat')}";
@@ -20,7 +22,6 @@
 		gMapChat.strCopyFromSearch = "{'Copy to my markers'|i18n('design/standard/ezchat')}";
 		gMapChat.strEnterTitle = "{'Enter marker title:'|i18n('design/standard/ezchat')}";
 		gMapChat.strChangeTitle = "{'Change marker title:'|i18n('design/standard/ezchat')}";
-		ezChat.strMapSent = "{'%1 shows a point on the map: '|i18n('design/standard/ezchat','',array('<span dir=\'ltr\' onclick=\'ajaxChat.insertText(this.firstChild.nodeValue);\'>%s</span>'))}"+ezChat.strMapSent;
       	var gBarOptions = {ldelim}
 			resultList : document.getElementById('gresults'),
 			onSearchCompleteCallback : gMapChat.openSearchFrame,
@@ -28,7 +29,7 @@
 			onGenerateMarkerHtmlCallback : gMapChat.writeHTMLForInfoWindow
 		{rdelim};
         gMapChat.map = new GMap2(document.getElementById("map"), {ldelim}googleBarOptions: gBarOptions{rdelim});
-        gMapChat.map.setCenter(new GLatLng({$defaultStartingLocationLat}, {$defaultStartingLocationLng}), {$defaultStartingLocationZoom});
+        gMapChat.map.setCenter(new GLatLng(defaultStartingLocationLat,defaultStartingLocationLng),defaultStartingLocationZoom);
 		gMapChat.map.addControl(new GSmallMapControl());
 		gMapChat.map.enableGoogleBar();
 		gMapChat.map.checkResize();

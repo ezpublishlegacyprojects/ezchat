@@ -193,6 +193,10 @@
         <source>%1 shows a point on the map: </source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>This functionality is disabled for this moment.</source>
+        <translation type="unfinished"></translation>
+    </message>
 
 </context>
 <context>

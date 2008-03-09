@@ -21,7 +21,7 @@
 *}
 
 {set-block scope=root variable=cache_ttl}0{/set-block}
-
+{default gMapsInterface=false()}
 
 <script src="{ezroot(no)}extension/ezchat/ajaxchat/js/chat.js" type="text/javascript" charset="UTF-8"></script>
 <script src="{'javascript/custom.js'|ezdesign(no)}" type="text/javascript" charset="UTF-8"></script>
@@ -116,6 +116,11 @@
 
 		ajaxChat.lang['callUserPicture'] = "{'Show picture'|i18n('design/standard/ezchat')}";
 		ezChat.baseURL = "{'/'|ezurl(no)}";
+		{if $gMapsInterface}
+			ezChat.strMapSent = "{'%1 shows a point on the map: '|i18n('design/standard/ezchat','',array('<span dir=\'ltr\' onclick=\'ajaxChat.insertText(this.firstChild.nodeValue);\'>%s</span>'))}"+ezChat.strMapSent;
+		{else}
+			ezChat.strMapSent = "{'%1 shows a point on the map: '|i18n('design/standard/ezchat','',array('<span dir=\'ltr\' onclick=\'ajaxChat.insertText(this.firstChild.nodeValue);\'>%s</span>'))}<a href=\"javascript:alert('{'This functionality is disabled for this moment.'|i18n('design/standard/ezchat')}');\">%c</a>";
+		{/if}
 	// ]]>
 </script>
 
@@ -393,3 +398,5 @@
 		<div class="chatCopyright"><a href="https://blueimp.net/ajax/">AJAX Chat</a> &copy; <a href="https://blueimp.net">blueimp.net</a></div>
 	</div>
 	<div id="flashInterfaceContainer"></div>
+
+{/default}
