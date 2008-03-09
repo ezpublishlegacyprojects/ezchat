@@ -85,6 +85,10 @@
         <source>Deactivate Google Maps tools</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Messaging parameters</source>
+        <translation type="unfinished"></translation>
+    </message>
 
 </context>
 <context>
@@ -195,6 +199,10 @@
     </message>
     <message>
         <source>This functionality is disabled for this moment.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Toggle Google Maps</source>
         <translation type="unfinished"></translation>
     </message>
 

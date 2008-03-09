@@ -1,0 +1,82 @@
+/*
+ SOFTWARE NAME: eZchat
+ SOFTWARE RELEASE: 0.1.x
+ COPYRIGHT NOTICE: Copyright (C) 2008 Xavier GOULEY & Maxime THOMAS
+ SOFTWARE LICENSE: GNU General Public License v2.0
+ NOTICE: >
+   This program is free software; you can redistribute it and/or
+   modify it under the terms of version 2.0  of the GNU General
+   Public License as published by the Free Software Foundation.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of version 2.0 of the GNU General
+   Public License along with this program; if not, write to the Free
+   Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+*/
+
+@media screen,projection,handheld {
+
+#gresults div.gmls-app {
+	border: none!important;
+}
+
+#gresults div.gmls-results-controls, #gresults div.gmls-attribution {
+	display: none;
+}
+
+#gresults div.gs-title {
+	font-size: 72%!important;
+}
+
+#gmaps-controls-container {
+	width: 2%;
+	float: right;
+	overflow: visible;
+}
+#gmaps-controls {
+	width:212px;
+	height: 29em;
+	padding-left: 1px;
+	background-color: white;
+}
+#map {
+	width: 98%;
+	height: 29em;
+	float: left;
+}
+
+.gmapheader {
+	font-size: 88%!important;
+	height: 17px!important;
+	padding-left: 0.4em;
+	padding-right: 0.2em;
+	padding-top: 1px;
+}
+a.gmapheader-button {
+	float: right;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+div.gmaplist {
+	font-size: 72%!important;
+	width: 197px;
+	height: 14em;
+	overflow: auto;
+				xbackground: green;
+	padding: 2px 4px;
+}
+div.gmaplist table {
+	width: 98%;
+				background-color: white;
+}
+div.low-padding {
+	padding:3px!important;
+}
+
+}

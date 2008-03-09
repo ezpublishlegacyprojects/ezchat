@@ -21,6 +21,7 @@
 *}
 
 {set-block scope=root variable=cache_ttl}0{/set-block}
+{default gMapsInterface=false()}
 
 
 <script src="{ezroot(no)}extension/ezchat/ajaxchat/js/chat.js" type="text/javascript" charset="UTF-8"></script>
@@ -91,6 +92,28 @@
 			ajaxChat.setSetting('onlineList', (document.getElementById('onlineListContainer').offsetWidth > 0));
 		{rdelim}
 
+		{if $gMapsInterface}
+			{def $defaultStartingLocationLat=first_set($startingLocationLat, ezini( 'gmapsSettings', 'defaultStartingLocationLat', 'ezchat.ini' ))}
+			{def $defaultStartingLocationLng=first_set($startingLocationLng, ezini( 'gmapsSettings', 'defaultStartingLocationLng', 'ezchat.ini' ))}
+			{def $defaultStartingLocationZoom=first_set($startingLocationZoom, ezini( 'gmapsSettings', 'defaultStartingLocationZoom', 'ezchat.ini' ))}
+
+			var gmapLoaded = false;
+			function loadGoogleMap() {ldelim}
+				ajaxChat.toggleSetting('help', 'gMapsButton');
+				toggleContainer('gmap-box', '');
+				if (gmapLoaded == false) {ldelim}
+					try {ldelim}
+						initGoogleMap(gmapInitLatitude, gmapInitLongitude, gmapInitZoom);
+					{rdelim} catch(e) {ldelim}
+						initGoogleMap({$defaultStartingLocationLat},{$defaultStartingLocationLng},{$defaultStartingLocationZoom});
+					{rdelim}
+					gmapLoaded = true;
+				{rdelim}
+			{rdelim}
+
+			{undef $defaultStartingLocationLat $defaultStartingLocationLng $defaultStartingLocationZoom}
+		{/if}
+
 		ajaxChatConfig.loginChannelID = parseInt('[LOGIN_CHANNEL_ID/]');
 		ajaxChatConfig.sessionName = '[SESSION_NAME/]';
 		ajaxChatConfig.cookieExpiration = parseInt('[COOKIE_EXPIRATION/]');
@@ -109,15 +132,17 @@
 		ajaxChatConfig.socketServerHost = decodeURIComponent('[SOCKET_SERVER_HOST/]');
 		ajaxChatConfig.socketServerPort = parseInt('[SOCKET_SERVER_PORT/]');
 		ajaxChatConfig.socketServerChatID = parseInt('[SOCKET_SERVER_CHAT_ID/]');
-
 		ajaxChatConfig.ajaxURL = "{$loginURL|ezurl(no)}?ajax=true";
 		ajaxChat.ajaxURL = "{$loginURL|ezurl(no)}?ajax=true";
  		ajaxChatConfig.baseURL = "{ezroot(no)}extension/ezchat/ajaxchat/";
-
 		ajaxChat.init(ajaxChatConfig, ajaxChatLang, true, true, true, initialize, finalize);
-
 		ajaxChat.lang['callUserPicture'] = "{'Show picture'|i18n('design/standard/ezchat')}";
 		ezChat.baseURL = "{'/'|ezurl(no)}";
+		{if $gMapsInterface}
+			ezChat.strMapSent = "{'%1 shows a point on the map: '|i18n('design/standard/ezchat','',array('<span dir=\'ltr\' onclick=\'ajaxChat.insertText(this.firstChild.nodeValue);\'>%s</span>'))}"+ezChat.strMapSent;
+		{else}
+			ezChat.strMapSent = "{'%1 shows a point on the map: '|i18n('design/standard/ezchat','',array('<span dir=\'ltr\' onclick=\'ajaxChat.insertText(this.firstChild.nodeValue);\'>%s</span>'))}<a href=\"javascript:alert('{'This functionality is disabled for this moment.'|i18n('design/standard/ezchat')}');\">%c</a>";
+		{/if}
 	// ]]>
 </script>
 
@@ -132,10 +157,6 @@
 				<h1>[LANG]title[/LANG]</h1>
 			</div>
 			<div class="chatBlock">
-				<div id="optionsContainer">
-					<input type="button" class="defaultbutton" id="audioButton" value="[LANG]toggleAudio[/LANG]" title="[LANG]toggleAudio[/LANG]" onclick="ajaxChat.toggleSetting('audio', 'audioButton');"/>
-					<input type="button" class="defaultbutton" id="autoScrollButton" value="[LANG]toggleAutoScroll[/LANG]" title="[LANG]toggleAutoScroll[/LANG]" onclick="ajaxChat.toggleSetting('autoScroll', 'autoScrollButton');"/>
-		  		</div>
 				<div id="chatList"></div>
 				<div id="submitButtonContainer" class="buttonblock">
 					<span id="messageLengthCounter">0/[MESSAGE_TEXT_MAX_LENGTH/]</span><br/>
@@ -155,6 +176,8 @@
 					<input class="defaultbutton" type="button" value="[LANG]bbCodeLabelCode[/LANG]" title="[LANG]bbCodeTitleCode[/LANG]" onclick="ajaxChat.insertBBCode('code');"/>
 					<input class="defaultbutton" type="button" value="[LANG]bbCodeLabelURL[/LANG]" title="[LANG]bbCodeTitleURL[/LANG]" onclick="ajaxChat.insertBBCode('url');"/>
 					<input class="defaultbutton" type="button" value="[LANG]bbCodeLabelColor[/LANG]" title="[LANG]bbCodeTitleColor[/LANG]" onclick="ajaxChat.showHide('colorCodesContainer', null);"/>
+					<input type="button" class="defaultbutton" id="audioButton" value="[LANG]toggleAudio[/LANG]" title="[LANG]toggleAudio[/LANG]" onclick="ajaxChat.toggleSetting('audio', 'audioButton');"/>
+					<input type="button" class="defaultbutton" id="autoScrollButton" value="[LANG]toggleAutoScroll[/LANG]" title="[LANG]toggleAutoScroll[/LANG]" onclick="ajaxChat.toggleSetting('autoScroll', 'autoScrollButton');"/>
 				</div>
 				<div id="colorCodesContainer" style="display:none;" dir="ltr"></div>
 		  		<div class="break"></div>
@@ -164,6 +187,21 @@
 	</div></div></div>
 	<div class="border-bl"><div class="border-br"><div class="border-bc"></div></div></div>
 	</div>
+
+	{* GoogleMaps interface: *}
+	{if $gMapsInterface}
+		<div class="border-box" id="gmap-box" style="display:none;">
+		<div class="border-tl"><div class="border-tr"><div class="border-tc"></div></div></div>
+		<div class="border-ml"><div class="border-mr"><div class="border-mc float-break low-padding">
+		<div class="content-view-full">
+			{include uri="design:ezchat/gmaps.tpl"}
+		</div>
+		</div></div></div>
+		<div class="border-bl"><div class="border-br"><div class="border-bc"></div></div></div>
+		</div>
+	{/if}
+
+
 </div>
 <div style="float:right;width:30%;">
 	<div class="border-box">
@@ -173,6 +211,9 @@
 		<div class="block-type-3items block-view-3_items1">
 			<div class="attribute-header"><h2>[LANG]channel[/LANG]</h2></div>
 			<div id="logoutChannelContainer" class="buttonblock">
+				<div style="float:right;">
+					<a href="javascript:loadGoogleMap();" title="{'Toggle Google Maps'|i18n('design/standard/ezchat')}"><img src={'gmaps/map_compass.png'|ezimage} width="48" height="48" border="0" /></a>
+				</div>
 				<div class="defaultselect">
 					<select onchange="ajaxChat.switchChannel(this.options[this.selectedIndex].value);">[CHANNEL_OPTIONS/]</select>
 				</div>
@@ -299,127 +340,6 @@
 		</div>
 		<!-- BLOCK: END -->
 
-{*
-	    <!-- BLOCK: START -->
-		<div class="block-type-itemlist">
-			<div class="attribute-header"><a href="#" title="[LANG]toggleSettings[/LANG]" onclick="toggleContainer('settingsContainer', new Array('onlineListContainer','helpContainer'));">
-			    <h2>[LANG]settings[/LANG]</h2>
-			</a></div>
-			<div class="block-content" id="settingsContainer" style="display:none;">
-			    <div id="settingsList">
-					<table>
-						<tr class="rowOdd">
-							<td><label for="bbCodeSetting">[LANG]settingsBBCode[/LANG]</label></td>
-							<td class="setting"><input type="checkbox" id="bbCodeSetting" onclick="ajaxChat.setSetting('bbCode', this.checked);"/></td>
-						</tr>
-						<tr class="rowEven">
-							<td><label for="hyperLinksSetting">[LANG]settingsHyperLinks[/LANG]</label></td>
-							<td class="setting"><input type="checkbox" id="hyperLinksSetting" onclick="ajaxChat.setSetting('hyperLinks', this.checked);"/></td>
-						</tr>
-						<tr class="rowOdd">
-							<td><label for="lineBreaksSetting">[LANG]settingsLineBreaks[/LANG]</label></td>
-							<td class="setting"><input type="checkbox" id="lineBreaksSetting" onclick="ajaxChat.setSetting('lineBreaks', this.checked);"/></td>
-						</tr>
-						<tr class="rowEven">
-							<td><label for="emoticonsSetting">[LANG]settingsEmoticons[/LANG]</label></td>
-							<td class="setting"><input type="checkbox" id="emoticonsSetting" onclick="ajaxChat.setSetting('emoticons', this.checked);"/></td>
-						</tr>
-						<tr class="rowOdd">
-							<td><label for="autoFocusSetting">[LANG]settingsAutoFocus[/LANG]</label></td>
-							<td class="setting"><input type="checkbox" id="autoFocusSetting" onclick="ajaxChat.setSetting('autoFocus', this.checked);"/></td>
-						</tr>
-						<tr class="rowEven">
-							<td><label for="maxMessagesSetting">[LANG]settingsMaxMessages[/LANG]</label></td>
-							<td class="setting"><input type="text" class="text" id="maxMessagesSetting" onchange="ajaxChat.setSetting('maxMessages', parseInt(this.value));"/></td>
-						</tr>
-						<tr class="rowOdd">
-							<td><label for="wordWrapSetting">[LANG]settingsWordWrap[/LANG]</label></td>
-							<td class="setting"><input type="checkbox" id="wordWrapSetting" onclick="ajaxChat.setSetting('wordWrap', this.checked);"/></td>
-						</tr>
-						<tr class="rowEven">
-							<td><label for="maxWordLengthSetting">[LANG]settingsMaxWordLength[/LANG]</label></td>
-							<td class="setting"><input type="text" class="text" id="maxWordLengthSetting" onchange="ajaxChat.setSetting('maxWordLength', parseInt(this.value));"/></td>
-						</tr>
-						<tr class="rowOdd">
-							<td><label for="dateFormatSetting">[LANG]settingsDateFormat[/LANG]</label></td>
-							<td class="setting"><input type="text" class="text" id="dateFormatSetting" onchange="ajaxChat.setSetting('dateFormat', this.value);"/></td>
-						</tr>
-						<tr class="rowEven">
-							<td><label for="persistFontColorSetting">[LANG]settingsPersistFontColor[/LANG]</label></td>
-							<td class="setting"><input type="checkbox" id="persistFontColorSetting" onclick="ajaxChat.setPersistFontColor(this.checked);"/></td>
-						</tr>
-						<tr class="rowOdd">
-							<td><label for="audioVolumeSetting">[LANG]settingsAudioVolume[/LANG]</label></td>
-							<td class="setting">
-								<select class="left" id="audioVolumeSetting" onchange="ajaxChat.setAudioVolume(this.options[this.selectedIndex].value);">
-									<option value="1.0">100 %</option>
-									<option value="0.9">90 %</option>
-									<option value="0.8">80 %</option>
-									<option value="0.7">70 %</option>
-									<option value="0.6">60 %</option>
-									<option value="0.5">50 %</option>
-									<option value="0.4">40 %</option>
-									<option value="0.3">30 %</option>
-									<option value="0.2">20 %</option>
-									<option value="0.1">10 %</option>
-								</select>
-							</td>
-						</tr>
-						<tr class="rowEven">
-							<td><label for="soundReceiveSetting">[LANG]settingsSoundReceive[/LANG]</label></td>
-							<td class="setting">
-								<select id="soundReceiveSetting" onchange="ajaxChat.setSetting('soundReceive', this.options[this.selectedIndex].value);"><option value="">-</option></select><input type="image" src="img/pixel.gif" class="button playback" alt="[LANG]playSelectedSound[/LANG]" title="[LANG]playSelectedSound[/LANG]" onclick="ajaxChat.playSound(this.previousSibling.options[this.previousSibling.selectedIndex].value);"/>
-							</td>
-						</tr>
-						<tr class="rowOdd">
-							<td><label for="soundSendSetting">[LANG]settingsSoundSend[/LANG]</label></td>
-							<td class="setting">
-								<select id="soundSendSetting" onchange="ajaxChat.setSetting('soundSend', this.options[this.selectedIndex].value);"><option value="">-</option></select><input type="image" src="img/pixel.gif" class="button playback" alt="[LANG]playSelectedSound[/LANG]" title="[LANG]playSelectedSound[/LANG]" onclick="ajaxChat.playSound(this.previousSibling.options[this.previousSibling.selectedIndex].value);"/>
-							</td>
-						</tr>
-						<tr class="rowEven">
-							<td><label for="soundEnterSetting">[LANG]settingsSoundEnter[/LANG]</label></td>
-							<td class="setting">
-								<select id="soundEnterSetting" onchange="ajaxChat.setSetting('soundEnter', this.options[this.selectedIndex].value);"><option value="">-</option></select><input type="image" src="img/pixel.gif" class="button playback" alt="[LANG]playSelectedSound[/LANG]" title="[LANG]playSelectedSound[/LANG]" onclick="ajaxChat.playSound(this.previousSibling.options[this.previousSibling.selectedIndex].value);"/>
-							</td>
-						</tr>
-						<tr class="rowOdd">
-							<td><label for="soundLeaveSetting">[LANG]settingsSoundLeave[/LANG]</label></td>
-							<td class="setting">
-								<select id="soundLeaveSetting" onchange="ajaxChat.setSetting('soundLeave', this.options[this.selectedIndex].value);"><option value="">-</option></select><input type="image" src="img/pixel.gif" class="button playback" alt="[LANG]playSelectedSound[/LANG]" title="[LANG]playSelectedSound[/LANG]" onclick="ajaxChat.playSound(this.previousSibling.options[this.previousSibling.selectedIndex].value);"/>
-							</td>
-						</tr>
-						<tr class="rowEven">
-							<td><label for="soundChatBotSetting">[LANG]settingsSoundChatBot[/LANG]</label></td>
-							<td class="setting">
-								<select id="soundChatBotSetting" onchange="ajaxChat.setSetting('soundChatBot', this.options[this.selectedIndex].value);"><option value="">-</option></select><input type="image" src="img/pixel.gif" class="button playback" alt="[LANG]playSelectedSound[/LANG]" title="[LANG]playSelectedSound[/LANG]" onclick="ajaxChat.playSound(this.previousSibling.options[this.previousSibling.selectedIndex].value);"/>
-							</td>
-						</tr>
-						<tr class="rowOdd">
-							<td><label for="soundErrorSetting">[LANG]settingsSoundError[/LANG]</label></td>
-							<td class="setting">
-								<select id="soundErrorSetting" onchange="ajaxChat.setSetting('soundError', this.options[this.selectedIndex].value);"><option value="">-</option></select><input type="image" src="img/pixel.gif" class="button playback" alt="[LANG]playSelectedSound[/LANG]" title="[LANG]playSelectedSound[/LANG]" onclick="ajaxChat.playSound(this.previousSibling.options[this.previousSibling.selectedIndex].value);"/>
-							</td>
-						</tr>
-						<tr class="rowEven">
-							<td><label for="blinkSetting">[LANG]settingsBlink[/LANG]</label></td>
-							<td class="setting"><input type="checkbox" id="blinkSetting" onclick="ajaxChat.setSetting('blink', this.checked);"/></td>
-						</tr>
-						<tr class="rowOdd">
-							<td><label for="blinkIntervalSetting">[LANG]settingsBlinkInterval[/LANG]</label></td>
-							<td class="setting"><input type="text" class="text" id="blinkIntervalSetting" onchange="ajaxChat.setSetting('blinkInterval', parseInt(this.value));"/></td>
-						</tr>
-						<tr class="rowEven">
-							<td><label for="blinkIntervalNumberSetting">[LANG]settingsBlinkIntervalNumber[/LANG]</label></td>
-							<td class="setting"><input type="text" class="text" id="blinkIntervalNumberSetting" onchange="ajaxChat.setSetting('blinkIntervalNumber', parseInt(this.value));"/></td>
-						</tr>
-					</table>
-				</div>
-			</div>
-		</div>
-		<!-- BLOCK: END -->
-*}
-
 		<div class="block-separator"></div>
 		<!--
 			Please retain the full copyright notice below including the link to blueimp.net.
@@ -435,3 +355,5 @@
 	<div class="border-bl"><div class="border-br"><div class="border-bc"></div></div></div>
 </div>
 <div id="flashInterfaceContainer"></div>
+
+{/default}

@@ -36,11 +36,27 @@
 *}
 
 {default shoutbox = false()}
+{default gmapLatitude = false()}
+{default gmapLongitude = false()}
+{default gmapZoom = false()}
 
-{section show=$shoutbox}
-	{$attribute.content.shoutbox}
-{section-else}
-	{$attribute.content.chatroom}
-{/section}
+	{if and($gmapLatitude, $gmapLongitude, $gmapZoom)}
+		<script type="text/javascript">
+	    //<![CDATA[
+	    	var gmapInitLatitude = {$gmapLatitude};
+	    	var gmapInitLogitude = {$gmapLongitude};
+	    	var gmapInitZoom = {$gmapZoom};
+	    //]]>
+	    </script>
+	{/if}
 
+	{section show=$shoutbox}
+		{$attribute.content.shoutbox}
+	{section-else}
+		{$attribute.content.chatroom}
+	{/section}
+
+{/default}
+{/default}
+{/default}
 {/default}

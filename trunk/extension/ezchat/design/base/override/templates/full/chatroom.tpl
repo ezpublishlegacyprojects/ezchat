@@ -20,4 +20,8 @@
    MA 02110-1301, USA.
 *}
 
-{attribute_view_gui attribute=$node.data_map.chatroom shoutbox=false()}
+{attribute_view_gui attribute=$node.data_map.chatroom
+					shoutbox=false()
+					gmapLatitude=false()
+					gmapLogitude=false()
+					gmapZoom=false()      }

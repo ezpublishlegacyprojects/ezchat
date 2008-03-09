@@ -90,15 +90,27 @@
 			ajaxChat.setSetting('onlineList', (document.getElementById('onlineListContainer').offsetWidth > 0));
 		{rdelim}
 
-		var gmapLoaded = false;
-		function loadGMap() {ldelim}
-			ajaxChat.toggleSetting('help', 'gMapsButton');
-			toggleContainer('gmap-box', '');
-			if (gmapLoaded == false) {ldelim}
-				gMapLoad();
-				gmapLoaded = true;
+		{if $gMapsInterface}
+			{def $defaultStartingLocationLat=first_set($startingLocationLat, ezini( 'gmapsSettings', 'defaultStartingLocationLat', 'ezchat.ini' ))}
+			{def $defaultStartingLocationLng=first_set($startingLocationLng, ezini( 'gmapsSettings', 'defaultStartingLocationLng', 'ezchat.ini' ))}
+			{def $defaultStartingLocationZoom=first_set($startingLocationZoom, ezini( 'gmapsSettings', 'defaultStartingLocationZoom', 'ezchat.ini' ))}
+
+			var gmapLoaded = false;
+			function loadGoogleMap() {ldelim}
+				ajaxChat.toggleSetting('help', 'gMapsButton');
+				toggleContainer('gmap-box', '');
+				if (gmapLoaded == false) {ldelim}
+					try {ldelim}
+						initGoogleMap(gmapInitLatitude, gmapInitLongitude, gmapInitZoom);
+					{rdelim} catch(e) {ldelim}
+						initGoogleMap({$defaultStartingLocationLat},{$defaultStartingLocationLng},{$defaultStartingLocationZoom});
+					{rdelim}
+					gmapLoaded = true;
+				{rdelim}
 			{rdelim}
-		{rdelim}
+
+			{undef $defaultStartingLocationLat $defaultStartingLocationLng $defaultStartingLocationZoom}
+		{/if}
 
 		ajaxChatConfig.loginChannelID = parseInt('[LOGIN_CHANNEL_ID/]');
 		ajaxChatConfig.sessionName = '[SESSION_NAME/]';
@@ -118,13 +130,10 @@
 		ajaxChatConfig.socketServerHost = decodeURIComponent('[SOCKET_SERVER_HOST/]');
 		ajaxChatConfig.socketServerPort = parseInt('[SOCKET_SERVER_PORT/]');
 		ajaxChatConfig.socketServerChatID = parseInt('[SOCKET_SERVER_CHAT_ID/]');
-
 		ajaxChatConfig.ajaxURL = "{$loginURL|ezurl(no)}?ajax=true";
 		ajaxChat.ajaxURL = "{$loginURL|ezurl(no)}?ajax=true";
  		ajaxChatConfig.baseURL = "{ezroot(no)}extension/ezchat/ajaxchat/";
-
 		ajaxChat.init(ajaxChatConfig, ajaxChatLang, true, true, true, initialize, finalize);
-
 		ajaxChat.lang['callUserPicture'] = "{'Show picture'|i18n('design/standard/ezchat')}";
 		ezChat.baseURL = "{'/'|ezurl(no)}";
 		{if $gMapsInterface}
@@ -153,7 +162,7 @@
 				<ul class="bulletlist">
 					<li id="audioButton"><div>    <a href="#" onclick="ajaxChat.toggleSetting('audio', 'audioButton');" title="[LANG]toggleAudio[/LANG]">[LANG]toggleAudio[/LANG]</a></div></li>
 					<li id="autoScrollButton"><div>    <a href="#" onclick="ajaxChat.toggleSetting('autoScroll', 'autoScrollButton');" title="[LANG]toggleAutoScroll[/LANG]">[LANG]toggleAutoScroll[/LANG]</a></div></li>
-					{if $gMapsInterface}<li id="gMapsButton" class="off"><div>    <a href="#" onclick="loadGMap();" title="[LANG]toggleHelp[/LANG]">Toggle gMaps ###</a></div></li>{/if}
+					{if $gMapsInterface}<li id="gMapsButton" class="off"><div>    <a href="javascript:loadGoogleMap();" title="[LANG]toggleHelp[/LANG]">{'Toggle Google Maps'|i18n('design/standard/ezchat')}</a></div></li>{/if}
 					<li id="helpButton" class="off"><div>    <a href="#" onclick="ajaxChat.toggleSetting('help', 'helpButton');toggleContainer('helpContainer', '');" title="[LANG]toggleHelp[/LANG]">[LANG]toggleHelp[/LANG]</a></div></li>
 				</ul>
 				<div class="block">

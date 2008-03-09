@@ -36,29 +36,14 @@
 	</legend>
 	<div class="block inline">
 
-		<div class="element">
-			<label>
-				<input id="ezcoa-{if ne( $attribute_base, 'ContentObjectAttribute' )}{$attribute_base}-{/if}{$attribute.contentclassattribute_id}_{$attribute.contentclass_attribute_identifier}" class="ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" type="checkbox" name="{$attribute_base}_ezchatroom_allowprivatemessages_boolean_{$attribute.id}" {$attribute.content.option_list.0.value|choose( '', 'checked="checked"' )} value="" />{'Allow private messages'|i18n( 'ezchat/datatypes/chatroom' )}
-			</label>
-		</div>
-		<div class="element">
-			<label>
-				<input id="ezcoa-{if ne( $attribute_base, 'ContentObjectAttribute' )}{$attribute_base}-{/if}{$attribute.contentclassattribute_id}_{$attribute.contentclass_attribute_identifier}" class="ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" type="checkbox" name="{$attribute_base}_ezchatroom_showchannelmessages_boolean_{$attribute.id}" {$attribute.content.option_list.1.value|choose( '', 'checked="checked"' )} value="" />{'Show channel messages'|i18n( 'ezchat/datatypes/chatroom' )}
-			</label>
-		</div>
-		<div class="element">
-			<label>
-				<input id="ezcoa-{if ne( $attribute_base, 'ContentObjectAttribute' )}{$attribute_base}-{/if}{$attribute.contentclassattribute_id}_{$attribute.contentclass_attribute_identifier}" class="ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" type="checkbox" name="{$attribute_base}_ezchatroom_requestmessagespriorchannelenter_boolean_{$attribute.id}" {$attribute.content.option_list.2.value|choose( '', 'checked="checked"' )} value="" />{'Request messages prior channel enter'|i18n( 'ezchat/datatypes/chatroom' )}
-			</label>
-		</div>
-
 		<div class="break"></div>
 
-		<table class="list" style="width:350px" cellspacing="0">
+		<table class="list" style="width:400px" cellspacing="0">
 			<tbody>
 				<tr>
 				    <th>{'Opening hours'|i18n( 'ezchat/datatypes/chatroom' )}</th>
 				    <th>{'Opening days'|i18n( 'ezchat/datatypes/chatroom' )}</th>
+				    <th>{'Messaging parameters'|i18n( 'ezchat/datatypes/chatroom' )}</th>
 				</tr>
 				<tr class="bglight">
 					<td>
@@ -80,6 +65,23 @@
 							<option value="5" {section show=$days|contains(5)}selected="selected"{/section}>{'Friday'|i18n( 'ezchat/datatypes/chatroom' )}</option>
 							<option value="6" {section show=$days|contains(6)}selected="selected"{/section}>{'Saturday'|i18n( 'ezchat/datatypes/chatroom' )}</option>
 						</select>
+					</td>
+					<td>
+						<div class="element">
+							<label>
+								<input id="ezcoa-{if ne( $attribute_base, 'ContentObjectAttribute' )}{$attribute_base}-{/if}{$attribute.contentclassattribute_id}_{$attribute.contentclass_attribute_identifier}" class="ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" type="checkbox" name="{$attribute_base}_ezchatroom_allowprivatemessages_boolean_{$attribute.id}" {$attribute.content.option_list.0.value|choose( '', 'checked="checked"' )} value="" />{'Allow private messages'|i18n( 'ezchat/datatypes/chatroom' )}
+							</label>
+						</div>
+						<div class="element">
+							<label>
+								<input id="ezcoa-{if ne( $attribute_base, 'ContentObjectAttribute' )}{$attribute_base}-{/if}{$attribute.contentclassattribute_id}_{$attribute.contentclass_attribute_identifier}" class="ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" type="checkbox" name="{$attribute_base}_ezchatroom_showchannelmessages_boolean_{$attribute.id}" {$attribute.content.option_list.1.value|choose( '', 'checked="checked"' )} value="" />{'Show channel messages'|i18n( 'ezchat/datatypes/chatroom' )}
+							</label>
+						</div>
+						<div class="element">
+							<label>
+								<input id="ezcoa-{if ne( $attribute_base, 'ContentObjectAttribute' )}{$attribute_base}-{/if}{$attribute.contentclassattribute_id}_{$attribute.contentclass_attribute_identifier}" class="ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" type="checkbox" name="{$attribute_base}_ezchatroom_requestmessagespriorchannelenter_boolean_{$attribute.id}" {$attribute.content.option_list.2.value|choose( '', 'checked="checked"' )} value="" />{'Request messages prior channel enter'|i18n( 'ezchat/datatypes/chatroom' )}
+							</label>
+						</div>
 					</td>
 				</tr>
 			</tbody>

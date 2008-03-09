@@ -1,17 +1,11 @@
 {set-block scope=root variable=cache_ttl}0{/set-block}
 
-{def $defaultStartingLocationLat=first_set($startingLocationLat, ezini( 'gmapsSettings', 'defaultStartingLocationLat', 'ezchat.ini' ))}
-{def $defaultStartingLocationLng=first_set($startingLocationLng, ezini( 'gmapsSettings', 'defaultStartingLocationLng', 'ezchat.ini' ))}
-{def $defaultStartingLocationZoom=first_set($startingLocationZoom, ezini( 'gmapsSettings', 'defaultStartingLocationZoom', 'ezchat.ini' ))}
-
 	<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key={ezini( 'gmapsSettings', 'googleKey', 'ezchat.ini' )}"
       type="text/javascript"></script>
     <script type="text/javascript">
     //<![CDATA[
 
-    function gMapLoad(	defaultStartingLocationLat={$defaultStartingLocationLat} ,
-    					defaultStartingLocationLng={$defaultStartingLocationLng} ,
-    					defaultStartingLocationZoom={$defaultStartingLocationZoom} ) {ldelim}
+    function initGoogleMap(defaultStartingLocationLat, defaultStartingLocationLng, defaultStartingLocationZoom) {ldelim}
       if (GBrowserIsCompatible()) {ldelim}
 		gMapChat.imagesRoot = "{'/extension/ezchat/design/standard/images/gmaps/'|ezroot(no)}";
 		gMapChat.strEdit = "{'Edit this marker'|i18n('design/standard/ezchat')}";
@@ -34,15 +28,14 @@
 		gMapChat.map.enableGoogleBar();
 		gMapChat.map.checkResize();
       {rdelim}
+      if (window.addEventListener) {ldelim}
+		  window.addEventListener("unload", GUnload, false);
+	  {rdelim} else if (document.addEventListener) {ldelim}
+		  document.addEventListener("unload", GUnload, false);
+	  {rdelim} else if (window.attachEvent) {ldelim}
+		  window.attachEvent("onunload", GUnload);
+	  {rdelim}
     {rdelim}
-
-	if (window.addEventListener) {ldelim}
-		window.addEventListener("unload", GUnload, false);
-	{rdelim} else if (document.addEventListener) {ldelim}
-		document.addEventListener("unload", GUnload, false);
-	{rdelim} else if (window.attachEvent) {ldelim}
-		window.attachEvent("onunload", GUnload);
-	{rdelim}
 
     //]]>
     </script>
@@ -103,4 +96,3 @@
 	</div></div></div></div></div></div>
 </div>
 
-{undef $defaultStartingLocationLat $defaultStartingLocationLng $defaultStartingLocationZoom}
