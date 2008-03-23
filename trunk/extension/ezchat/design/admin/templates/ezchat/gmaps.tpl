@@ -37,6 +37,13 @@
 	  {rdelim}
     {rdelim}
 
+    function showMenu(force) {ldelim}
+    	/*opener = document.getElementById('gmaps-controls-opener');
+    	controls = document.getElementById('gmaps-controls');
+    	if (force == true) controls.style.display = 'block';
+    	else controls.style.display = (controls.style.display == 'none')? 'block':'none'; */
+    {rdelim}
+
     //]]>
     </script>
 
@@ -91,7 +98,7 @@
 <div class="controlbar">
 	<div class="box-bc"><div class="box-ml"><div class="box-mr"><div class="box-tc"><div class="box-bl"><div class="box-br">
 	<div class="block">
-	    Blabla
+	    ####
 	</div>
 	</div></div></div></div></div></div>
 </div>

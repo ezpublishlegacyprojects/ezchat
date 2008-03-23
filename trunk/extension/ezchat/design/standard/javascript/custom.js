@@ -127,15 +127,15 @@ var gMapChat = {
 							+text
 							+"</a></div>";
 		newCell = domNode.insertCell(-1);
-		newCell.innerHTML =  "<a href='#' onclick=\"gMapChat.sendMyPOI("+myPOIsIndex+", this.parentNode.parentNode);\" title=\""+this.strSend+"\" >"
+		newCell.innerHTML =  "<a href='javascript:void(0);' onclick=\"gMapChat.sendMyPOI("+myPOIsIndex+", this.parentNode.parentNode);\" title=\""+this.strSend+"\" >"
 							+"<img src='"+this.imagesRoot+"send.gif' width='16' height='16' border='0' />"
 							+"</a>";
 		newCell = domNode.insertCell(-1);
-		newCell.innerHTML =  "<a href='#' onclick=\"gMapChat.removeMyPOI("+myPOIsIndex+", this.parentNode.parentNode);\" title=\""+this.strRemove+"\" >"
+		newCell.innerHTML =  "<a href='javascript:void(0);' onclick=\"gMapChat.removeMyPOI("+myPOIsIndex+", this.parentNode.parentNode);\" title=\""+this.strRemove+"\" >"
 							+"<img src='"+this.imagesRoot+"delete.gif' width='16' height='16' border='0' />"
 							+"</a>";
 		newCell = domNode.insertCell(-1);
-		newCell.innerHTML =  "<a href='#' onclick=\"gMapChat.editMyPOI("+myPOIsIndex+", this.parentNode.parentNode);\" title=\""+this.strEdit+"\" >"
+		newCell.innerHTML =  "<a href='javascript:void(0);' onclick=\"gMapChat.editMyPOI("+myPOIsIndex+", this.parentNode.parentNode);\" title=\""+this.strEdit+"\" >"
 							+"<img src='"+this.imagesRoot+"edit.gif' width='16' height='16' border='0' />"
 							+"</a>";
 		newCell = domNode.insertCell(-1);
@@ -156,15 +156,15 @@ var gMapChat = {
 							+text
 							+"</a></div>";
 		newCell = domNode.insertCell(-1);
-		newCell.innerHTML =  "<a href='#' onclick=\"gMapChat.sendMyPOI("+myPOIsIndex+", this.parentNode.parentNode);\" title=\""+this.strSend+"\" >"
+		newCell.innerHTML =  "<a href='javascript:void(0);' onclick=\"gMapChat.sendMyPOI("+myPOIsIndex+", this.parentNode.parentNode);\" title=\""+this.strSend+"\" >"
 							+"<img src='"+this.imagesRoot+"send.gif' width='16' height='16' border='0' />"
 							+"</a>";
 		newCell = domNode.insertCell(-1);
-		newCell.innerHTML =  "<a href='#' onclick=\"gMapChat.removeMyPOI("+myPOIsIndex+", this.parentNode.parentNode);\" title=\""+this.strRemove+"\" >"
+		newCell.innerHTML =  "<a href='javascript:void(0);' onclick=\"gMapChat.removeMyPOI("+myPOIsIndex+", this.parentNode.parentNode);\" title=\""+this.strRemove+"\" >"
 							+"<img src='"+this.imagesRoot+"delete.gif' width='16' height='16' border='0' />"
 							+"</a>";
 		newCell = domNode.insertCell(-1);
-		newCell.innerHTML =  "<a href='#' onclick=\"gMapChat.editMyPOI("+myPOIsIndex+", this.parentNode.parentNode);\" title=\""+this.strEdit+"\" >"
+		newCell.innerHTML =  "<a href='javascript:void(0);' onclick=\"gMapChat.editMyPOI("+myPOIsIndex+", this.parentNode.parentNode);\" title=\""+this.strEdit+"\" >"
 							+"<img src='"+this.imagesRoot+"edit.gif' width='16' height='16' border='0' />"
 							+"</a>";
 		newCell = domNode.insertCell(-1);
@@ -191,6 +191,7 @@ var gMapChat = {
 			this.setImage(gMapChat.imagesRoot+'/stars/blue_marker.png');
 		});
 		this.map.addOverlay(marker);
+		showMenu(true);
 	},
 
 	addYourPOI: function(center, text) {
@@ -206,11 +207,11 @@ var gMapChat = {
 		newCell = domNode.insertCell(-1);
 		newCell.innerHTML =  "<img src='"+this.imagesRoot+"send.gif' width='16' height='16' border='0' />";
 		newCell = domNode.insertCell(-1);
-		newCell.innerHTML =  "<a href='#' onclick=\"gMapChat.removeMyPOI("+myPOIsIndex+", this.parentNode.parentNode);\" title=\""+this.strRemove+"\" >"
+		newCell.innerHTML =  "<a href='javascript:void(0);' onclick=\"gMapChat.removeMyPOI("+myPOIsIndex+", this.parentNode.parentNode);\" title=\""+this.strRemove+"\" >"
 							+"<img src='"+this.imagesRoot+"delete.gif' width='16' height='16' border='0' />"
 							+"</a>";
 		newCell = domNode.insertCell(-1);
-		newCell.innerHTML =  "<a href='#' onclick=\"gMapChat.editMyPOI("+myPOIsIndex+", this.parentNode.parentNode);\" title=\""+this.strEdit+"\" >"
+		newCell.innerHTML =  "<a href='javascript:void(0);' onclick=\"gMapChat.editMyPOI("+myPOIsIndex+", this.parentNode.parentNode);\" title=\""+this.strEdit+"\" >"
 							+"<img src='"+this.imagesRoot+"edit.gif' width='16' height='16' border='0' />"
 							+"</a>";
 		newCell = domNode.insertCell(-1);
@@ -232,6 +233,7 @@ var gMapChat = {
 		});
 		this.map.addOverlay(marker);
 		this.map.setCenter(center);
+		showMenu(true);
 	},
 
 	buildSmallIcon: function(iconImage) {
@@ -270,15 +272,15 @@ var gMapChat = {
 								+text
 								+"</a></div>";
 			newCell = domNode.insertCell(-1);
-			newCell.innerHTML =  "<a href='#' onclick=\"gMapChat.sendMyPOI("+myPOIsIndex+", this.parentNode.parentNode);\" title=\""+this.strSend+"\" >"
+			newCell.innerHTML =  "<a href='javascript:void(0);' onclick=\"gMapChat.sendMyPOI("+myPOIsIndex+", this.parentNode.parentNode);\" title=\""+this.strSend+"\" >"
 								+"<img src='"+this.imagesRoot+"send.gif' width='16' height='16' border='0' />"
 								+"</a>";
 			newCell = domNode.insertCell(-1);
-			newCell.innerHTML =  "<a href='#' onclick=\"gMapChat.removeMyPOI("+myPOIsIndex+", this.parentNode.parentNode);\" title=\""+this.strRemove+"\" >"
+			newCell.innerHTML =  "<a href='javascript:void(0);' onclick=\"gMapChat.removeMyPOI("+myPOIsIndex+", this.parentNode.parentNode);\" title=\""+this.strRemove+"\" >"
 								+"<img src='"+this.imagesRoot+"delete.gif' width='16' height='16' border='0' />"
 								+"</a>";
 			newCell = domNode.insertCell(-1);
-			newCell.innerHTML =  "<a href='#' onclick=\"gMapChat.editMyPOI("+myPOIsIndex+", this.parentNode.parentNode);\" title=\""+this.strEdit+"\" >"
+			newCell.innerHTML =  "<a href='javascript:void(0);' onclick=\"gMapChat.editMyPOI("+myPOIsIndex+", this.parentNode.parentNode);\" title=\""+this.strEdit+"\" >"
 								+"<img src='"+this.imagesRoot+"edit.gif' width='16' height='16' border='0' />"
 								+"</a>";
 			newCell = domNode.insertCell(-1);
@@ -289,11 +291,11 @@ var gMapChat = {
 							+"onmouseout=\"gMapChat.myPOIs["+myPOIsIndex+"].setImage(gMapChat.imagesRoot+'stars/blue_marker.png');\" "
 							+"href=\"javascript:gMapChat.map.panTo(gMapChat.myPOIs["+myPOIsIndex+"].getPoint());\" >"
 							+text
-							+"</a></div></td><td style='width:16px;'><a href='#' onclick=\"gMapChat.sendMyPOI("+myPOIsIndex+", this.parentNode.parentNode);\" title=\""+this.strSend+"\" >"
+							+"</a></div></td><td style='width:16px;'><a href='javascript:void(0);' onclick=\"gMapChat.sendMyPOI("+myPOIsIndex+", this.parentNode.parentNode);\" title=\""+this.strSend+"\" >"
 							+"<img src='"+this.imagesRoot+"send.gif' width='16' height='16' border='0' />"
-							+"</a></td><td style='width:16px;'><a href='#' onclick=\"gMapChat.removeMyPOI("+myPOIsIndex+", this.parentNode.parentNode);\" >"
+							+"</a></td><td style='width:16px;'><a href='javascript:void(0);' onclick=\"gMapChat.removeMyPOI("+myPOIsIndex+", this.parentNode.parentNode);\" >"
 							+"<img src='"+this.imagesRoot+"delete.gif' width='16' height='16' border='0' />"
-							+"</a></td><td style='width:16px;'><a href='#' onclick=\"gMapChat.editMyPOI("+myPOIsIndex+", this.parentNode.parentNode);\" >"
+							+"</a></td><td style='width:16px;'><a href='javascript:void(0);' onclick=\"gMapChat.editMyPOI("+myPOIsIndex+", this.parentNode.parentNode);\" >"
 							+"<img src='"+this.imagesRoot+"edit.gif' width='16' height='16' border='0' />"
 							+"</a></td><td style='width:14px;'>"
 							+"<input type='checkbox' checked='checked' onclick=\"(this.checked)?gMapChat.myPOIs["+myPOIsIndex+"].show():gMapChat.myPOIs["+myPOIsIndex+"].hide();\" />"

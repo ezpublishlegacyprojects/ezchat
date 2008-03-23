@@ -38,11 +38,39 @@
 	float: right;
 	overflow: visible;
 }
+#gmaps-controls-subcontainer {
+	width: 224px;
+	display: inline;
+}
+#gmaps-controls-subcontainer div.controls-subcontainer {
+	border-right: 1px solid #d1d1d1;
+	width: 224px;
+}
 #gmaps-controls {
+	border: none;
 	width:212px;
 	height: 29em;
-	padding-left: 1px;
+	margin-left: 12px;
 	background-color: white;
+	filter: Alpha(Opacity=90);
+	-moz-opacity:.9;
+	-khtml-opacity:.9;
+}
+#gmaps-controls-opener {
+	border: none;
+	float: left;
+	width: 11px;
+	margin-left: 1px;
+	height: 27em;
+	background-image: url(../../images/header-bg.png);
+	background-position:left top;
+	background-repeat:repeat-y;
+	padding-top: 2em;
+	padding-left: 2px;
+	cursor: col-resize; // pointer;
+}
+#gmaps-controls-opener img {
+	margin-bottom: 8px;
 }
 #map {
 	width: 98%;
@@ -56,6 +84,10 @@
 	padding-left: 0.4em;
 	padding-right: 0.2em;
 	padding-top: 1px;
+	padding-bottom: 1px;
+	background-image: url(../../images/button-bg.png);
+	background-position:left top;
+	background-repeat:repeat-x;
 }
 a.gmapheader-button {
 	float: right;
@@ -68,12 +100,10 @@ div.gmaplist {
 	width: 197px;
 	height: 14em;
 	overflow: auto;
-				xbackground: green;
 	padding: 2px 4px;
 }
 div.gmaplist table {
 	width: 98%;
-				background-color: white;
 }
 div.low-padding {
 	padding:3px!important;

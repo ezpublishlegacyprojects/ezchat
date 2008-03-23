@@ -57,7 +57,7 @@
 	margin-left:2px;
 }
 #logoutChannelContainer .defaultselect {
-	width:200px;
+	width:160px;
 	display:block;
 	margin-left:2px;
 	margin-right:2px;
@@ -140,7 +140,7 @@ div.rowOdd ul.userMenu {
 	padding-right: 0.8em;
 }
 #bbCodeContainer input {
-	margin-right: 11px;
+	margin-right: 1px;
 }
 #helpContainer {
 	background-color: #ffffff;

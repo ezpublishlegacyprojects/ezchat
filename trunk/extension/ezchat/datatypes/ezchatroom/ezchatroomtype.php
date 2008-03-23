@@ -203,7 +203,7 @@ class ezchatroomtype extends eZDataType
         $XMLParams->setAllowPrivateChannels($contentClassAttribute->attribute( "data_int1" )==1);
         $XMLParams->setAllowUserMessageDelete($contentClassAttribute->attribute( "data_int2" )==1);
         $object = $contentObjectAttribute->object();
-        $XMLParams->setLoginURL("/".$object->mainNode()->urlAlias());
+        if ($object->mainNode()) $XMLParams->setLoginURL("/".$object->mainNode()->urlAlias());
         return $XMLParams;
     }
 

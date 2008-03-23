@@ -97,7 +97,7 @@
 
 			var gmapLoaded = false;
 			function loadGoogleMap() {ldelim}
-				ajaxChat.toggleSetting('help', 'gMapsButton');
+				ajaxChat.toggleSetting('gmaps', 'gMapsButton');
 				toggleContainer('gmap-box', '');
 				if (gmapLoaded == false) {ldelim}
 					try {ldelim}
@@ -476,7 +476,7 @@
 		{if $gMapsInterface}
 			<div id="gmap-box" style="display:none;">
 				<div class="box-header"><div class="box-tc"><div class="box-ml"><div class="box-mr"><div class="box-tl"><div class="box-tr">
-					<h4 class="whiteTitle">Google MAP ! ####</h4>
+					<h4 class="whiteTitle">{'Google Maps tools'|i18n('design/standard/ezchat')}</h4>
 				</div></div></div></div></div></div>
 				{include uri="design:ezchat/gmaps.tpl"}
 			</div>

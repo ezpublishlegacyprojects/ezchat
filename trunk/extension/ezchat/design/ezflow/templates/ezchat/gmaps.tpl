@@ -37,50 +37,70 @@
 	  {rdelim}
     {rdelim}
 
+    function showMenu(force) {ldelim}
+    	/*opener = document.getElementById('gmaps-controls-opener');*/
+    	controls = document.getElementById('gmaps-controls');
+    	if (force == true) controls.style.display = 'block';
+    	else controls.style.display = (controls.style.display == 'none')? 'block':'none';
+    {rdelim}
+
     //]]>
     </script>
 
     <div id="gmaps-main">
     	<div id="map"></div>
     	<div id="gmaps-controls-container">
-	    	<div id="gmaps-controls">
+    		<div id="gmaps-controls-subcontainer"><div class="controls-subcontainer">
 
-				<div class="header-subline gmapheader">
-					<a class="gmapheader-button" href="#" title="{'Show/hide all markers'|i18n('design/standard/ezchat')}"><img src={'gmaps/toggle.gif'|ezimage} width="16" height="16" border="0" /></a>
-					<a class="gmapheader-button" href="javascript:gMapChat.viewChannelPOIs();" title="{'View all markers on map'|i18n('design/standard/ezchat')}"><img src={'gmaps/window_fullscreen.png'|ezimage} width="16" height="16" border="0" /></a>
-					{'Chatroom markers'|i18n('design/standard/ezchat')}
-				</div>
-				<div id="channelpois" class="gmaplist">
-					<table><tbody id="channelpois_list">
-						<tr><td>01. <a href="#">Coming soon...</a></td>
-						<td style='width:14px;'><input type='checkbox' checked='checked' onclick="" /></td></tr>
-					</tbody></table>
-				</div>
-
-				<div class="header-subline gmapheader">
-					<a class="gmapheader-button" href="#" title="{'Show/hide all markers'|i18n('design/standard/ezchat')}"><img src={'gmaps/toggle.gif'|ezimage} width="16" height="16" border="0" /></a>
-					<a class="gmapheader-button" href="javascript:gMapChat.viewMyPOIs();" title="{'View all markers on map'|i18n('design/standard/ezchat')}"><img src={'gmaps/window_fullscreen.png'|ezimage} width="16" height="16" border="0" /></a>
-					<a class="gmapheader-button" href="javascript:gMapChat.addMyPOI(gMapChat.map.getCenter());" title="{'Add a marker'|i18n('design/standard/ezchat')}"><img src={'gmaps/add.gif'|ezimage} width="16" height="16" border="0" /></a>
-					{'My markers'|i18n('design/standard/ezchat')}
-				</div>
-				<div id="mypois" class="gmaplist">
-					<table><tbody id="mypois_list">
-						<tr><td></td><td style='width:16px;'></td><td style='width:16px;'></td>
-						<td style='width:16px;'></td><td style='width:14px;'></td></tr>
-					</tbody></table>
-				</div>
-
-				<div id="gsearch" style="display:none;">
-					<div class="header-mainline gmapheader">
-						<a class="gmapheader-button" href="javascript:gMapChat.closeSearchFrame();" title="{'Close search results'|i18n('design/standard/ezchat')}"><img src={'gmaps/delete.gif'|ezimage} width="16" height="16" border="0" /></a>
-						{'Search results'|i18n('design/standard/ezchat')}
+    			<div id="gmaps-controls-opener" onclick="showMenu(false);">
+	    			<img src={'li-bullet.gif'|ezimage} />
+	    			<img src={'li-bullet.gif'|ezimage} />
+	    			<img src={'li-bullet.gif'|ezimage} />
+	    			<img src={'li-bullet.gif'|ezimage} />
+	    			<img src={'li-bullet.gif'|ezimage} />
+	    			<img src={'li-bullet.gif'|ezimage} />
+	    			<img src={'li-bullet.gif'|ezimage} />
+	    			<img src={'li-bullet.gif'|ezimage} />
+	    			<img src={'li-bullet.gif'|ezimage} />
+	    		</div>
+		    	<div id="gmaps-controls">
+					<div class="header-subline gmapheader">
+						<a class="gmapheader-button" href="#" title="{'Show/hide all markers'|i18n('design/standard/ezchat')}"><img src={'gmaps/toggle.gif'|ezimage} width="16" height="16" border="0" /></a>
+						<a class="gmapheader-button" href="javascript:gMapChat.viewChannelPOIs();" title="{'View all markers on map'|i18n('design/standard/ezchat')}"><img src={'gmaps/window_fullscreen.png'|ezimage} width="16" height="16" border="0" /></a>
+						{'Chatroom markers'|i18n('design/standard/ezchat')}
 					</div>
-					<div class="gmaplist">
-						<div id="gresults"></div>
+					<div id="channelpois" class="gmaplist">
+						<table><tbody id="channelpois_list">
+							<tr><td>01. <a href="#">Coming soon...</a></td>
+							<td style='width:14px;'><input type='checkbox' checked='checked' onclick="" /></td></tr>
+						</tbody></table>
+					</div>
+
+					<div class="header-subline gmapheader">
+						<a class="gmapheader-button" href="#" title="{'Show/hide all markers'|i18n('design/standard/ezchat')}"><img src={'gmaps/toggle.gif'|ezimage} width="16" height="16" border="0" /></a>
+						<a class="gmapheader-button" href="javascript:gMapChat.viewMyPOIs();" title="{'View all markers on map'|i18n('design/standard/ezchat')}"><img src={'gmaps/window_fullscreen.png'|ezimage} width="16" height="16" border="0" /></a>
+						<a class="gmapheader-button" href="javascript:gMapChat.addMyPOI(gMapChat.map.getCenter());" title="{'Add a marker'|i18n('design/standard/ezchat')}"><img src={'gmaps/add.gif'|ezimage} width="16" height="16" border="0" /></a>
+						{'My markers'|i18n('design/standard/ezchat')}
+					</div>
+					<div id="mypois" class="gmaplist">
+						<table><tbody id="mypois_list">
+							<tr><td></td><td style='width:16px;'></td><td style='width:16px;'></td>
+							<td style='width:16px;'></td><td style='width:14px;'></td></tr>
+						</tbody></table>
+					</div>
+
+					<div id="gsearch" style="display:none;">
+						<div class="header-mainline gmapheader">
+							<a class="gmapheader-button" href="javascript:gMapChat.closeSearchFrame();" title="{'Close search results'|i18n('design/standard/ezchat')}"><img src={'gmaps/delete.gif'|ezimage} width="16" height="16" border="0" /></a>
+							{'Search results'|i18n('design/standard/ezchat')}
+						</div>
+						<div class="gmaplist">
+							<div id="gresults"></div>
+						</div>
 					</div>
 				</div>
 
-	    	</div>
+	    	</div></div>
 		</div>
 		<div class="break"></div>
 	</div>

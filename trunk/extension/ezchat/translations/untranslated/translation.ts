@@ -205,6 +205,10 @@
         <source>Toggle Google Maps</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Google Maps tools</source>
+        <translation type="unfinished"></translation>
+    </message>
 
 </context>
 <context>
