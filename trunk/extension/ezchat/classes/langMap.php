@@ -26,8 +26,8 @@ require_once( "lib/ezutils/classes/ezini.php" );
 require_once( "lib/ezutils/classes/ezuri.php" );
 require_once( "kernel/classes/datatypes/ezuser/ezuser.php" );
 
-$siteIni =& eZINI::instance( 'site.ini' );
-$ezchatIni =& eZINI::instance( 'ezchat.ini' );
+$siteIni = eZINI::instance( 'site.ini' );
+$ezchatIni = eZINI::instance( 'ezchat.ini' );
 
 // Default language:
 if ( $ezchatIni->hasVariable( 'langDefault', 'generalDefaults' ) ) $langDefault = $ezchatIni->variable( 'langDefault', 'generalDefaults' );
