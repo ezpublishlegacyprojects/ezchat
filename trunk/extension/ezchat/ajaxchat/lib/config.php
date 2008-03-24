@@ -37,13 +37,14 @@ $config['dbTableNames'] = array();
 $config['dbTableNames']['online']		= 'ajax_chat_online';
 $config['dbTableNames']['messages']		= 'ajax_chat_messages';
 $config['dbTableNames']['bans']			= 'ajax_chat_bans';
+$config['dbTableNames']['invitations']	= 'ajax_chat_invitations';
 
 // Available languages:
-$config['langAvailable'] = array('ar','bg','de','el','en','es','fi','fr','he','it','nl','no','pl','ro','ru','sk','sr','sv','uk');
+$config['langAvailable'] = array('ar','bg','bp','de','el','en','es','fi','fr','he','it','nl','no','pl','ro','ru','sk','sr','sv','tr','uk','zh');
 // Default language:
 $config['langDefault'] = 'en';
 // Language names:
-$config['langNames'] = array('ar'=>'عربي','bg'=>'Български','de'=>'Deutsch','el'=>'Ελληνικα','en'=>'English','es'=>'Español','fi'=>'Suomi','fr'=>'Français','he'=>'עברית','it'=>'Italiano','nl'=>'Nederlands','no'=>'Norsk','pl'=>'Polski','ro'=>'România','ru'=>'Русский','sk'=>'Slovenčina','sr'=>'Srpski','sv'=>'Svenska','uk'=>'Українська');
+$config['langNames'] = array('ar'=>'عربي','bg'=>'Български','bp'=>'Português (Brasil)','de'=>'Deutsch','el'=>'Ελληνικα','en'=>'English','es'=>'Español','fi'=>'Suomi','fr'=>'Français','he'=>'עברית','it'=>'Italiano','nl'=>'Nederlands','no'=>'Norsk','pl'=>'Polski','ro'=>'România','ru'=>'Русский','sk'=>'Slovenčina','sr'=>'Srpski','sv'=>'Svenska','tr'=>'Türkçe','uk'=>'Українська','zh'=>'中文 (简体)');
 
 // Available styles:
 $config['styleAvailable'] = array('beige','black','grey','Oxygen','Lithium','Sulfur','Cobalt','Mercury','Radium','prosilver','subsilver2','subblack2','subSilver','Core','MyBB','vBulletin');

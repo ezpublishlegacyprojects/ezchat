@@ -13,7 +13,11 @@
 	ajaxChat.logsCommand = null;
 
 	ajaxChat.startChatUpdate = function() {
-		this.updateChat('&getInfos=' + this.encodeText('userID,userName,userRole'));
+		var infos = 'userID,userName,userRole';
+		if(this.socketServerEnabled) {
+			infos += ',socketRegistrationID';
+		}
+		this.updateChat('&getInfos=' + this.encodeText(infos));
 	}
 
 	ajaxChat.updateChat = function(paramString) {
@@ -68,6 +72,9 @@
 	}
 
 	ajaxChat.onNewMessage = function(dateObject, userID, userName, userRoleClass, messageID, messageText, channelID, ip) {
+		if(messageText.indexOf('/delete') == 0) {
+			return false;
+		}
 		if(this.logsMonitorMode) {
 			this.blinkOnNewMessage(dateObject, userID, userName, userRoleClass, messageID, messageText, channelID, ip);
 			this.playSoundOnNewMessage(
@@ -103,24 +110,18 @@
 	
 	ajaxChat.socketUpdate = function(data) {
 		if(this.logsMonitorMode) {
-			var ids = data.split(' ');
-			// ids[0] is the messageID
-			// ids[1] is the channelID
-			// ids[2] is the userID of the request, not the actual message
-			// ids[3] is the message mode: 1 are channel messages while 0 are all other messages
-			if(ids.length == 4) {
+			var xmlDoc = this.loadXML(data);
+			if(xmlDoc) {
 				var selectedChannelID = parseInt(this.dom['channelSelection'].value);
-				var channelID = parseInt(ids[1]);
-				if(parseInt(ids[0]) > parseInt(this.lastID) &&
-					(selectedChannelID == -3 || channelID == selectedChannelID ||
+				var channelID = parseInt(xmlDoc.firstChild.getAttribute('channelID'));
+				if(selectedChannelID == -3 || channelID == selectedChannelID ||
 					selectedChannelID == -2 && channelID >= this.privateMessageDiff ||
 					selectedChannelID == -1
 						&& channelID >= this.privateChannelDiff
-						&& channelID < this.privateMessageDiff)
-				) {
-					clearTimeout(this.timer);
-					this.updateChat();
-				}	
+						&& channelID < this.privateMessageDiff
+					) {
+					this.handleChatMessages(xmlDoc.getElementsByTagName('message'));
+				}
 			}
 		}
 	}

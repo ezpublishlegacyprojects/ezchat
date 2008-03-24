@@ -170,6 +170,11 @@
 #content #chatList cite {
 	margin-right:5px;
 }
+#content #chatList .bbCodeImage {
+	vertical-align:top;
+	overflow:auto;
+	margin:5px;
+}
 #content #chatList .delete {
 	display:block;
 	float:right;

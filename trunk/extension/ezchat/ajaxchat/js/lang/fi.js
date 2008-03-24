@@ -71,6 +71,8 @@ var ajaxChatLang = {
 	errorUserNameNotFound: 'Virhe: Käyttäjää %s ei löydetty.',
 	errorMissingText: 'Virhe: Puuttuva viestin teksti.',
 	errorMissingUserName: 'Virhe: Puuttuva käyttäjänimi.',
+	errorInvalidUserName: 'Error: Invalid username.',
+	errorUserNameInUse: 'Error: Username already in use.',
 	errorMissingChannelName: 'Virhe: Puuttuva kanavan nimi.',
 	errorInvalidChannelName: 'Virhe: Virheellinen kanavan nimi: %s',
 	errorPrivateMessageNotAllowed: 'Virhe: Yksityisviestit eivät ole sallittuja.',

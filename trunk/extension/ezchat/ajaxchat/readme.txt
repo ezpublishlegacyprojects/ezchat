@@ -81,22 +81,26 @@ Installation
 	Whitespace in the user names will be converted to the underscore "_".
 
 
-4.	Creation of database tables
-	---------------------------
-
-	Execute the provided SQL script chat.sql by using phpMyAdmin:
-	http://www.phpmyadmin.net/
-	
-	On phpMyAdmin, select your database and click on "Import".
-	Select the file chat.sql from your local harddisk and click on "OK".
-	This should execute the included commands to create the tables needed by this chat.
-
-
-5.	Upload to the server
+4.	Upload to the server
 	--------------------
 
 	Upload the chat folder to your server somewhere under your document root:
 	e.g. http://example.org/path/to/chat/
+
+
+5.	Creation of database tables
+	---------------------------
+
+	Execute the provided installation script by visiting the following URL with your browser:
+	http://example.org/path/to/chat/install.php
+	
+	Replace "http://example.org/path/to/chat/" with the real URL to your chat directory.
+
+
+6.	Delete the installation script
+	------------------------------
+	
+	Delete the file install.php from the chat directory on your server.
 
 
 Ready! Just place a link to the chat directory on your website. :)
@@ -286,18 +290,18 @@ Display the shoutbox content using the shoutbox function:
 Socket Server:
 ==============
 
-Using the AJAX technology the chat clients have to permanently pull updates from the server.
+Using the AJAX technology alone the chat clients have to permanently pull updates from the server.
 This is due to AJAX being a web technology and HTTP being a stateless protocol.
-Using a permanent socket connection between clients and server it is possible to push updates from the server.
-With JavaScript alone it is not possible to establish permanent socket connections.
+Events pushed from server-side need a permanent or long-lasting socket connection between clients and server.
+This requires either a custom HTTP server (called "comet") or another custom socket server.
 
 AJAX Chat uses a JavaScript-to-Flash brigde to establish a permanent socket connection from client side.
 The JavaScript-to-Flash brigde requires a Flash plugin >= 9 installed on the user browser.
 Clients without this requirement will fall back to pull the server for updates.
 
-On server side you need to be able to start a custom Flash XML Socket Server.
-The socket server coming with AJAX Chat is implemented in Ruby - you will find it in the socket/ directory.
-To be able to start the service, the script files have to be executable:
+The socket server coming with AJAX Chat is implemented in Ruby.
+You need to be able to run a Ruby script as a service to run the socket server.
+To be able to start the service, the script files in the socket/ directory have to be executable:
 
 	$ chmod +x server
 	$ chmod +x server.rb
@@ -315,9 +319,12 @@ This will create two additional files:
 "server.pid" contains the process id of the service.
 "server.log" is filled with the socket server log.
 
-To monitor the socket server logs, you can use the following command:
+To monitor the socket server logs, you can use the "tail" command included in most GNU/Linux distributions:
 
 	$ tail -f server.log
+
+By default only errors and start/stop of the server are logged.
+To get more detailed logs configure the log level by editing the configuration file.
 
 To stop the service, execute the "server" script with the parameter "stop":
 
@@ -327,14 +334,12 @@ If the socket server is running, you have to enable the following option in lib/
 
 	$config['socketServerEnabled'] = true;
 	
-This tells the server-side chat script to push updates to the socket server.
-It tells clients to establish a permanent connection to the socket server to listen for updates.
+This tells the server-side chat script to broadcast chat messages via the socket server.
+Chat clients will establish a permanent connection to the socket server to listen for chat messages.
 
-Clients connected to the socket server will only send update requests to the web server if
-
-	1. The socket server update is not caused by their own messages sent.
-	2. The socket server update applies to their current channel (or private message box).
-	3. The socket server update is relevant to their view (e.g. the shoutbox does not display channel messages).
+By default only local clients (127.0.0.1,::1) may broadcast messages.
+Clients allowed to broadcast messages may also handle the channel authentication.
+If your socket server is running on another host you should set the broadcast_clients option to the chat server IP.
 
 Using the socket server increases response time while improving server performance at the same time.
 

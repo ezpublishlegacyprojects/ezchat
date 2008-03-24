@@ -70,6 +70,8 @@ var ajaxChatLang = {
 	errorUserNameNotFound: 'Chyba: Užívateľ %s nenájdený.',
 	errorMissingText: 'Chyba: Chýba text správy.',
 	errorMissingUserName: 'Chyba: Chýba meno užívateľa.',
+	errorInvalidUserName: 'Error: Invalid username.',
+	errorUserNameInUse: 'Error: Username already in use.',
 	errorMissingChannelName: 'Chyba: Chýba meno kanálu.',
 	errorInvalidChannelName: 'Chyba: Nesprávne meno kanálu: %s',
 	errorPrivateMessageNotAllowed: 'Chyba: Súkromné správy nie sú povolené.',

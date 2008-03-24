@@ -70,6 +70,8 @@ var ajaxChatLang = {
 	errorUserNameNotFound: 'Eroare: Utilizatorul %s nu a fost găsit.',
 	errorMissingText: 'Eroare: Nu aţi introdus nici-un text.',
 	errorMissingUserName: 'Eroare: Nu aţi introdus nici-un nume de utilizator.',
+	errorInvalidUserName: 'Error: Invalid username.',
+	errorUserNameInUse: 'Error: Username already in use.',
 	errorMissingChannelName: 'Eroare: Nu aţi introdus nici-un canal.',
 	errorInvalidChannelName: 'Eroare: Nume de canal incorect: %s',
 	errorPrivateMessageNotAllowed: 'Eroare: Mesajele private sunt interzise.',

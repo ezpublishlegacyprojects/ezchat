@@ -70,6 +70,8 @@ var ajaxChatLang = {
 	errorUserNameNotFound: 'Błąd: Użytkownik %s nie został znaleziony.',
 	errorMissingText: 'Błąd: Nie wpisano tekstu.',
 	errorMissingUserName: 'Błąd: Nie wpisano nicka.',
+	errorInvalidUserName: 'Error: Invalid username.',
+	errorUserNameInUse: 'Error: Username already in use.',
 	errorMissingChannelName: 'Błąd: Nie wpisano nazwy pokoju.',
 	errorInvalidChannelName: 'Błąd: Nieprawidłowa nazwa pokoju: %s',
 	errorPrivateMessageNotAllowed: 'Błąd: Prywatne wiadomości zostały zablokowane.',

@@ -70,6 +70,8 @@ var ajaxChatLang = {
 	errorUserNameNotFound: 'Greška: korisnik %s nije pronađen.',
 	errorMissingText: 'Greška: nedostaje tekst poruke.',
 	errorMissingUserName: 'Greška: nedostaje korisničko ime.',
+	errorInvalidUserName: 'Error: Invalid username.',
+	errorUserNameInUse: 'Error: Username already in use.',
 	errorMissingChannelName: 'Greška: nedostaje ime sobe.',
 	errorInvalidChannelName: 'Greška: pogrešno ime sobe: %s',
 	errorPrivateMessageNotAllowed: 'Greška: privatne poruke nisu dozvoljene.',

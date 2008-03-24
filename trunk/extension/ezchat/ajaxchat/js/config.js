@@ -22,6 +22,9 @@ var ajaxChatConfig = {
 	// The base URL of the chat directory, used to retrieve media files (images, sound files, etc.):
 	baseURL: './',
 
+	// A regular expression for allowed source URL's for media content (e.g. images displayed inline);
+	regExpMediaUrl: '^((http)|(https)):\\/\\/',
+	
 	// If set to false the chat update is delayed until the event defined in ajaxChat.setStartChatHandler():
 	startChatOnLoad: true,
 	
@@ -51,6 +54,10 @@ var ajaxChatConfig = {
 	settings: {
 		// Defines if BBCode tags are replaced with the associated HTML code tags:
 		bbCode: true,
+		// Defines if image BBCode is replaced with the associated image HTML code:
+		bbCodeImages: true,
+		// Defines if color BBCode is replaced with the associated color HTML code:
+		bbCodeColors: true,
 		// Defines if hyperlinks are made clickable:
 		hyperLinks: true,
 		// Defines if line breaks are enabled:
@@ -116,7 +123,8 @@ var ajaxChatConfig = {
 		'quote',
 		'code',
 		'color',
-		'url'
+		'url',
+		'img'
 	),
 	
 	// Defines the list of allowed color codes:

@@ -70,6 +70,8 @@ var ajaxChatLang = {
 	errorUserNameNotFound: 'Feil: Bruker %s ble ikke funnet.',
 	errorMissingText: 'Feil: Mangler meldingstekst.',
 	errorMissingUserName: 'Feil: Mangler Brukernavn.',
+	errorInvalidUserName: 'Error: Invalid username.',
+	errorUserNameInUse: 'Error: Username already in use.',
 	errorMissingChannelName: 'Feil: Mangler navn på kanal.',
 	errorInvalidChannelName: 'Feil: Feil navn på kanal: %s',
 	errorPrivateMessageNotAllowed: 'Feil: Private meldinger ikke tillatt.',

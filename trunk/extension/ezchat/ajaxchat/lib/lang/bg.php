@@ -32,6 +32,7 @@ $lang['bbCodeLabelUnderline'] = 'u';
 $lang['bbCodeLabelQuote'] = 'Цитат';
 $lang['bbCodeLabelCode'] = 'Код';
 $lang['bbCodeLabelURL'] = 'URL';
+$lang['bbCodeLabelImg'] = 'Image';
 $lang['bbCodeLabelColor'] = 'Цвят на шрифта';
 $lang['bbCodeTitleBold'] = 'Получер текст: [b]текст[/b]';
 $lang['bbCodeTitleItalic'] = 'Курсивен текст: [i]текст[/i]';
@@ -39,6 +40,7 @@ $lang['bbCodeTitleUnderline'] = 'Подчертан текст: [u]текст[/u
 $lang['bbCodeTitleQuote'] = 'Цитиран текст: [quote]текст[/quote] или [quote=Автор]текст[/quote]';
 $lang['bbCodeTitleCode'] = 'Показване на код: [code]код[/code]';
 $lang['bbCodeTitleURL'] = 'URL: [url]http://example.org[/url] или [url=http://example.org]текст[/url]';
+$lang['bbCodeTitleImg'] = 'Insert image: [img]http://example.org/image.jpg[/img]';
 $lang['bbCodeTitleColor'] = 'Цвят на шрифта: [color=red]текст[/color]';
 $lang['help'] = 'Помощ';
 $lang['helpItemDescJoin'] = 'Присъединяване към канал:';
@@ -85,6 +87,8 @@ $lang['helpItemDescNick'] = 'Смяна на потребителско име:'
 $lang['helpItemCodeNick'] = '/nick Потребителско_име';
 $lang['settings'] = 'Настройки';
 $lang['settingsBBCode'] = 'Позволяване на BBCode:';
+$lang['settingsBBCodeImages'] = 'Enable image BBCode:';
+$lang['settingsBBCodeColors'] = 'Enable font color BBCode:';
 $lang['settingsHyperLinks'] = 'Позволяване на хипервръзки:';
 $lang['settingsLineBreaks'] = 'Позволяване на край на ред:';
 $lang['settingsEmoticons'] = 'Позволяване на емоциконки:';

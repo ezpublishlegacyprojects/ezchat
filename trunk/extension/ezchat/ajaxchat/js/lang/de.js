@@ -69,6 +69,8 @@ var ajaxChatLang = {
 	errorUserNameNotFound: 'Fehler: Benutzer %s wurde nicht gefunden.',
 	errorMissingText: 'Fehler: Nachrichtentext fehlt.',
 	errorMissingUserName: 'Fehler: Benutzername fehlt.',
+	errorInvalidUserName: 'Fehler: Ungültiger Benutzername.',
+	errorUserNameInUse: 'Fehler: Benutzername schon vergeben.',
 	errorMissingChannelName: 'Fehler: Raumname fehlt.',
 	errorInvalidChannelName: 'Fehler: Ungültiger Raumname: %s',
 	errorPrivateMessageNotAllowed: 'Fehler: Private Nachrichten sind nicht erlaubt.',

@@ -70,6 +70,8 @@ var ajaxChatLang = {
 	errorUserNameNotFound: 'خطأ: العضو %s لم يتم العثور عليه.',
 	errorMissingText: 'خطأ: نص الرسالة مفقود.',
 	errorMissingUserName: 'خطأ: اسم المستخدم مفقود.',
+	errorInvalidUserName: 'Error: Invalid username.',
+	errorUserNameInUse: 'Error: Username already in use.',
 	errorMissingChannelName: 'خطأ: اسم المحطة مفقود.',
 	errorInvalidChannelName: 'خطأ: اسم المحطة غير صحيح: %s',
 	errorPrivateMessageNotAllowed: 'خطأ: غير مسموح بالرسائل الخاصة.',

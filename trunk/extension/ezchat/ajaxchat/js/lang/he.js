@@ -70,6 +70,8 @@ var ajaxChatLang = {
 	errorUserNameNotFound: 'שגיאה: המשתמש %s לא נמצא.',
 	errorMissingText: 'שגיאה: חסר טקסט בהודעה.',
 	errorMissingUserName: 'שגיאה: חסר שם משתמש.',
+	errorInvalidUserName: 'Error: Invalid username.',
+	errorUserNameInUse: 'Error: Username already in use.',
 	errorMissingChannelName: 'שגיאה: חסר שם ערוץ.',
 	errorInvalidChannelName: 'שגיאה: שם ערוץ לא חוקי: %s',
 	errorPrivateMessageNotAllowed: 'שגיאה: הודעות פרטיות אסורות לשימוש.',

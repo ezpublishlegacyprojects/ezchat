@@ -70,6 +70,8 @@ var ajaxChatLang = {
 	errorUserNameNotFound: 'Грешка: Не е намерен потребител %s.',
 	errorMissingText: 'Грешка: Липсва текст на съобщението.',
 	errorMissingUserName: 'Грешка: Липсва потребителско име.',
+	errorInvalidUserName: 'Error: Invalid username.',
+	errorUserNameInUse: 'Error: Username already in use.',
 	errorMissingChannelName: 'Грешка: Липсва име на канал.',
 	errorInvalidChannelName: 'Грешка: Невалидно име на канал: %s',
 	errorPrivateMessageNotAllowed: 'Грешка: Личните съобщения не са позволени.',

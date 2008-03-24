@@ -71,6 +71,8 @@ var ajaxChatLang = {
 	errorUserNameNotFound: 'Erreur: Utilisateur %s introuvable.',
 	errorMissingText: 'Erreur: Texte du message manquant.',
 	errorMissingUserName: 'Erreur: Nom d’utilisateur manquant.',
+	errorInvalidUserName: 'Error: Invalid username.',
+	errorUserNameInUse: 'Error: Username already in use.',
 	errorMissingChannelName: 'Erreur: Nom de salon manquant.',
 	errorInvalidChannelName: 'Erreur: Mauvais nom de salon: %s',
 	errorPrivateMessageNotAllowed: 'Erreur: Les messages privés sont interdits.',

@@ -1058,3 +1058,130 @@ Changed files:
 
 
 
+Version 0.7.4  (29.02.2008):
+-------------------------------
+
+New features:
+- Added an installation script (install.php) to create the database tables.
+	Make sure you delete this file after installation!
+- Updated ukrainian localization - thanks to Yuriy Smetana.
+- Updated greek localization - thanks to Akis Panas.
+
+Bugfixes:
+- Admin could not login if the chat was closed - fixed.
+- Added missing userID to a getUserNodeStringItems call - thanks to Xavier Gouley.
+- Fixed a bug (this.dom[id] instead of domNode) in updateDOM method - thanks to Xavier Gouley.
+- Made sure the database is selected on CustomAJAXChatInterface usage of SMF version.
+
+Changed files:
+- install.php (all versions - new)
+- js/chat.js (all versions)
+- js/lang/el.js (all versions)
+- js/lang/uk.js (all versions)
+- lib/class/AJAXChat.php (all versions)
+- lib/class/CustomAJAXChat.php (SMF version)
+- lib/lang/el.php (all versions)
+- lib/lang/uk.php (all versions)
+
+
+
+Version 0.8  (05.03.2008):
+-------------------------------
+
+New features:
+- Improved socket code which allows real streaming of chat messages and greatly improves performance.
+- Moved ignore list code to client-side making it possible to store ignored users using the settings cookie.
+- Added client-side interface to parse input text and input commands before sending it to server-side.
+- Added chinese (simplified) locale - thanks to mikespook.
+
+Other changes:
+- Changed invitation code to work with the new socket code.
+- Improved the online status and session handling.
+
+Bugfixes:
+- Added two missing JavaScript language strings for userName error messages.
+
+Notes:
+- The chat messages delivered using the socket connection are not encrypted even if the Chat-URL is on HTTPS.
+- A new database table for the invitations has been added.
+	To update your existing database you can use the following SQL command:
+	CREATE TABLE ajax_chat_invitations (
+		userID INT(11) NOT NULL,
+		channel INT(11) NOT NULL,
+		dateTime DATETIME NOT NULL
+	) DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+Changed files:
+- js/lang/zh.js (all versions - new)
+- js/lang/* (all versions)
+- js/chat.js (all versions)
+- js/logs.js (all versions)
+- lib/class/AJAXChat.php (all versions)
+- lib/lang/zh.php (all versions - new)
+- lib/config.php (all versions)
+- socket/server.conf (all versions)
+- socket/server.rb (all versions)
+- chat.sql
+
+
+
+Version 0.8.1  (09.03.2008):
+-------------------------------
+
+New features:
+- Added image BBCode support (can be disabled via user settings).
+- Added new client-side settings to enable/disable image and font color BBCode.
+- Added new JavaScript config setting to define allowed soure URL's for media content (e.g. images).
+- Added Português (Brasil) locale - thanks to vitoalvaro.
+
+Bugfixes:
+- Added a type check for a given database connection object (MySQL vs. MySQLi).
+- The method AJAXChat->getChatURL() could return the URL with the port added twice - fixed.
+
+Other changes:
+- Removed the 'mysql' setting for the versions for forums without MySQLi support (now detected automatically).
+
+Changed files:
+- css/positions.css (all versions)
+- css/shoutbox.css (all versions)
+- js/lang/bp.js (all versions - new)
+- js/chat.js (all versions)
+- js/config.js (all versions)
+- lib/class/AJAXChat.php (all versions)
+- lib/class/AJAXChatDataBase.php (all versions)
+- lib/class/CustomAJAXChat.php (phpBB2 and SMF version)
+- lib/lang/bp.php (all versions - new)
+- lib/lang/* (all versions)
+- lib/template/loggedIn.html (all versions)
+- lib/config.php (all versions)
+
+
+
+Version 0.8.1.1  (10.03.2008):
+-------------------------------
+
+Bugfixes:
+- Fixed an Opera bug related to the display of the deletion link for chat messages.
+
+Changed files:
+- js/chat.js (all versions)
+
+
+
+Version 0.8.1.2  (22.03.2008):
+-------------------------------
+
+New features:
+- Added Turkish locale - thanks to Cydonian.
+
+Bugfixes:
+- Accessing the chat via HTTPS produced an encryption warning on IE due to the hardcoded flash codebase url - fixed.
+
+Changed files:
+- js/chat.js (all versions)
+- js/lang/tr.js (all versions - new)
+- lib/lang/tr.php (all versions - new)
+- lib/config.php (all versions)
+
+
+

@@ -70,6 +70,8 @@ var ajaxChatLang = {
 	errorUserNameNotFound: 'Fout: Gebruiker %s werd niet gevonden.',
 	errorMissingText: 'Fout: Ontbrekende berichttekst.',
 	errorMissingUserName: 'Fout: Ontbrekende Gebruikersnaam.',
+	errorInvalidUserName: 'Error: Invalid username.',
+	errorUserNameInUse: 'Error: Username already in use.',
 	errorMissingChannelName: 'Fout: Ontbrekende kanaalnaam.',
 	errorInvalidChannelName: 'Fout: Ongeldige kanaalnaam: %s',
 	errorPrivateMessageNotAllowed: 'Error: Private berichten zijn niet toegestaan.',

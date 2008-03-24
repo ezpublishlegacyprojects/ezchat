@@ -9,13 +9,69 @@
 # "Sockets programming in Ruby"
 # by M. Tim Jones (mtj@mtjones.com).
 #
-# Date:: Thu, 18 Jan 2008
+# Date:: Tue, 05 Mar 2008
 # Author:: Sebastian Tschan, https://blueimp.net
 # License:: GNU Affero General Public License
 
-
 # Include socket library:
 require 'socket'
+# Include XML libraries:
+require 'rexml/document'
+require 'rexml/streamlistener'
+
+# XML Stream Handler class used to parse chat messages:
+class XMLStreamHandler
+  attr_reader :type,:chat_id,:user_id,:reg_id,:channel_id,:channel_ids
+  # Called when an opening tag (including attributes) is parsed:
+  def tag_start name, attrs
+    case name
+      when 'root'
+        # root messages are broadcast messages:
+        @type = :message
+        @chat_id = attrs['chatID']
+        @channel_id = attrs['channelID']
+        throw :break
+      when 'register'
+        # register messages are sent by chat clients:
+        @type = :register
+        @chat_id = attrs['chatID']
+        @user_id = attrs['userID']
+        @reg_id = attrs['regID']
+        throw :break
+      when 'authenticate'
+        # authenticate messages are sent by the chat server client:
+        @type = :authenticate
+        @chat_id = attrs['chatID']
+        @user_id = attrs['userID']
+        @reg_id = attrs['regID']
+        @channel_ids = Array::new
+      when 'channel'
+        # authenticate messages contain channel tags:
+        if @channel_ids
+          @channel_ids.push(attrs['id'])
+        else
+         throw :break
+        end
+      when 'policy-file-request'
+        # policy-file-requests are sent by flash clients for cross-domain authentication:
+        @type = :policy_file_request
+        throw :break
+      else
+        throw :break
+    end
+  end
+  # Called when a closing tag is parsed:
+  def tag_end name
+    if name == 'authenticate'
+      throw :break
+    end
+  end
+  def text text
+      # Called on text between tags
+  end
+  # Called when cdata is parsed:
+  alias cdata text
+end
 
 # Socket Server class:
 class SocketServer
@@ -33,6 +89,8 @@ class SocketServer
     @sockets = Array::new
     # Clients list:
     @clients = Hash::new
+    # Chats list, used to distinguish between different chat installations (contains channels list):
+    @chats = Hash::new
     # Initialize server socket:
     initialize_server_socket
     if @server_socket
@@ -78,7 +136,7 @@ class SocketServer
               handle_client_disconnection(socket)
   					else
               # Handle client input data:
-              handle_client_input(socket.gets(@config[:eol]), socket)
+              handle_client_input(socket, socket.gets(@config[:eol]))
   					end
   				end
   			end
@@ -101,12 +159,12 @@ class SocketServer
     @config[:max_clients] = 0
     # Comma-separated list of domains from which downloaded Flash clients are allowed to connect (* allows all domains):
     @config[:allow_access_from] = '*'
-    # Defines the policy-file-request string sent by Flash clients:
-    @config[:policy_file_request] = '<policy-file-request/>'    
     # Defines the cross-domain-policy string sent to Flash clients as response to a policy-file-request:
     @config[:cross_domain_policy] = '<cross-domain-policy><allow-access-from domain="'+@config[:allow_access_from]+'" to-ports="'+@config[:server_port].to_s+'"/></cross-domain-policy>'
-    # EOL (End Of Line) character used by Flash XML Socket communication:
+    # EOL (End Of Line) character used by Flash XML Socket communication (a null-byte):
     @config[:eol] = "\0"
+    # Log level (0 logs only errors and server start/stop, 1 logs client connections, 2 logs all messages but no broadcast content, 3 logs everything):
+    @config[:log_level] = 0
   end
 
   def load_properties_from_file(config_file)
@@ -122,11 +180,18 @@ class SocketServer
           # Add the configuration option to the config hash:
           key = line[0..i - 1].strip
           value = line[i + 1..-1].strip
-          # Enable boolean values:
+          # Parse boolean values:
           if value.eql?('false')
             @config[key.to_sym] = false
           elsif value.eql?('true')
             @config[key.to_sym] = true
+          # Parse integer numbers:
+          elsif value.to_i.to_s.eql?(value)
+            @config[key.to_sym] = value.to_i
+          # Parse floating point numbers:
+          elsif value.to_f.to_s.eql?(value)
+            @config[key.to_sym] = value.to_f
+          # Parse string values:
           else
             @config[key.to_sym] = value
           end
@@ -175,8 +240,10 @@ class SocketServer
         end
         # Add the client to the clients list:       
         @clients[socket] = client
-        # Log client connection and the number of connected clients:
-        puts "#{Time.now}\t#{client[:id]} Connects\t(#{@clients.size} connected)"; STDOUT.flush
+        if @config[:log_level].to_i > 0
+          # Log client connection and the number of connected clients:
+          puts "#{Time.now}\t#{client[:id]} Connects\t(#{@clients.size} connected)"; STDOUT.flush
+        end
       else
         # Close the socket connection:
         socket.close
@@ -186,61 +253,148 @@ class SocketServer
     end
   end
 
-  def handle_client_disconnection(socket, delete_socket=true)
+  def handle_client_disconnection(client_socket, delete_socket=true)
     # Retrieve the client ID for the current socket:
-    client_id = @clients[socket][:id]
+    client_id = @clients[client_socket][:id]
     begin
       # Close the socket connection:
-      socket.close
+      client_socket.close
     rescue
       # Rescue if closing the socket fails
     end
     if delete_socket
       # Remove the socket from the sockets list:
-      @sockets.delete(socket)
+      @sockets.delete(client_socket)
     end
     # Remove the client ID from the clients list:
-    @clients.delete(socket)
-    # Log client disconnection:
-    puts "#{Time.now}\t#{client_id} Disconnects\t(#{@clients.size} connected)"; STDOUT.flush
+    @clients.delete(client_socket)
+    if @config[:log_level].to_i > 0
+      # Log client disconnection and the number of connected clients:
+      puts "#{Time.now}\t#{client_id} Disconnects\t(#{@clients.size} connected)"; STDOUT.flush
+    end
   end
 
-  def handle_client_input(str, client_socket)
-    # The input string with the EOL removed:
-    str_chomped = str.chomp(@config[:eol])
-    # Check for policy-file-request from Flash client:
-    if str_chomped.eql?(@config[:policy_file_request])
-      begin
-        # Write the cross-domain-policy to the Flash client:
-        client_socket.write(@config[:cross_domain_policy]+@config[:eol])
-      rescue
-        # Rescue if writing to the socket fails
+  def handle_client_input(client_socket, str)
+    # Create a new XML stream handler:
+    handler = XMLStreamHandler.new
+    begin    
+      # As soon as the parser has found the relevant information it throws a :break symbol:
+      catch :break do
+        # Parse the given input string for XML messages:
+        REXML::Document.parse_stream(str, handler)
       end
-      # Log unformatted (dump) policy-file-request:
-      puts "#{Time.now}\t#{@clients[client_socket][:id]} #{str_chomped.dump}"; STDOUT.flush
-    else
-      # Check if the_client is allowed to broadcast:
-      if @clients[client_socket][:allowed_to_broadcast]
+      # The handler stores a type property to define the parsed XML message:
+      case handler.type
+        when :message
+          handle_broadcast_message(client_socket, handler.chat_id, handler.channel_id, str)
+        when :register
+          handle_client_registration(client_socket, handler.chat_id, handler.user_id, handler.reg_id)
+        when :authenticate
+          handle_client_authentication(client_socket, handler.chat_id, handler.user_id, handler.reg_id, handler.channel_ids)
+        when :policy_file_request
+          handle_policy_file_request(client_socket)
+      end    
+    rescue Exception => error
+      # Rescue if parsing the client input fails and log the error message:
+      puts "#{Time.now}\t#{@clients[client_socket][:id]} Client Input Error:#{error.to_s.dump}"; STDOUT.flush
+    end
+  end
+  
+  def handle_broadcast_message(client_socket, chat_id, channel_id, str)
+    # Check if the_client is allowed to broadcast:
+    if @clients[client_socket][:allowed_to_broadcast]
+      # Check if the chat and channel have been registered:
+      if @chats[chat_id] && (@chats[chat_id][channel_id] || @chats[chat_id]['ALL'])
         # Go through the sockets list:
         @sockets.each do |socket|
           # Skip the server socket and skip the the client socket if broadcast is not to be sent to self:
           if socket != @server_socket && (@config[:broadcast_self] || socket != client_socket)
-            begin
-              # Write the broadcast message on the socket connection:
-              socket.write(str)
-            rescue
-              # Rescue if writing to the socket fails
+            # Only write to clients registered to the given channel or to the "ALL" channel:
+            if @chats[chat_id]['ALL']
+              reg_id = @chats[chat_id]['ALL'][@clients[socket][:user_id]]
+            end
+            if !reg_id && @chats[chat_id][channel_id]
+              reg_id = @chats[chat_id][channel_id][@clients[socket][:user_id]]
+            end
+            # Check if the reg_id stored for the given channel and user_id matches the clients reg_id:
+            if reg_id && reg_id.eql?(@clients[socket][:reg_id])
+              begin
+                # Write the broadcast message on the socket connection:
+                socket.write(str)
+              rescue
+                # Rescue if writing to the socket fails
+              end
             end
           end
         end
-        # Log unformatted (dump) broadcast message (with EOL character stripped):
-        puts "#{Time.now}\t#{@clients[client_socket][:id]} #{str_chomped.dump}"; STDOUT.flush
       end
+      if @config[:log_level].to_i > 2
+        # Log the message sent by the broadcast client:
+        puts "#{Time.now}\t#{@clients[client_socket][:id]} Chat:#{chat_id.to_s.dump} Channel:#{channel_id.to_s.dump} Message:#{str.to_s.dump}"; STDOUT.flush
+      elsif @config[:log_level].to_i > 1
+        # Log the message sent by the broadcast client:
+        puts "#{Time.now}\t#{@clients[client_socket][:id]} Chat:#{chat_id.to_s.dump} Channel:#{channel_id.to_s.dump} Message"; STDOUT.flush
+      end
+    end
+  end
+  
+  def handle_client_registration(client_socket, chat_id, user_id, reg_id)
+    # Save the chat_id, use_id and reg_id as client properties:
+    @clients[client_socket][:chat_id] = chat_id
+    @clients[client_socket][:user_id] = user_id
+    @clients[client_socket][:reg_id] = reg_id
+    if @config[:log_level].to_i > 1
+      # Log the client registration:
+      puts "#{Time.now}\t#{@clients[client_socket][:id]} Chat:#{chat_id.to_s.dump} User:#{user_id.to_s.dump} Reg:#{reg_id.to_s.dump}"; STDOUT.flush
+    end
+  end
+  
+  def handle_client_authentication(client_socket, chat_id, user_id, reg_id, channel_ids)
+    # Only the broadcast clients may send authentication messages:
+    if @clients[client_socket][:allowed_to_broadcast]
+      # Create a new chat item if not found for the given chat_id:
+      if !@chats[chat_id]
+        @chats[chat_id] = Hash.new
+      end
+      # Go through the list of channels for the given chat:
+      @chats[chat_id].each_key do |key|
+        # Delete all items for the given user on all channels of the given chat:
+        @chats[chat_id][key].delete(user_id)
+        # If the chat channel is empty, delete the channel item:
+        if @chats[chat_id][key].size == 0
+          @chats[chat_id].delete(key)
+        end
+      end
+      # Go through the list of authenticated channel_ids:
+      channel_ids.each do |channel_id|
+        # Create a new channel item if not found for the current channel_id (and the given chat_id):
+        if !@chats[chat_id][channel_id]
+          @chats[chat_id][channel_id] = Hash.new
+        end
+        # Add a user item of the given user_id with the given reg_id to the current channel:
+        @chats[chat_id][channel_id][user_id] = reg_id
+      end
+      if @config[:log_level].to_i > 1
+        # Log the client authentication:
+        puts "#{Time.now}\t#{@clients[client_socket][:id]} Chat:#{chat_id.to_s.dump} User:#{user_id.to_s.dump} Auth:#{reg_id.to_s.dump} Channels:#{channel_ids.join(',').dump}"; STDOUT.flush
+      end
+    end
+  end
+  
+  def handle_policy_file_request(client_socket)
+    begin
+      # Write the cross-domain-policy to the Flash client:
+      client_socket.write(@config[:cross_domain_policy]+@config[:eol])
+    rescue
+      # Rescue if writing to the socket fails
+    end
+    if @config[:log_level].to_i > 1
+      # Log the policy-file-request:
+      puts "#{Time.now}\t#{@clients[client_socket][:id]} Policy-File-Request"; STDOUT.flush
     end
   end
 
 end
-
 
 # Start the socket server with the first command line argument as configuration file:
 SocketServer.new($*[0])
