@@ -91,6 +91,14 @@ Installing eZchat extension
    host, user, pass, name, type parameters (see eZpublish doc for similar site.ini
    parameters).
 
+6. Add a rewrite rule (in Apache conf, if used)
+
+   If you use recommended rewrite rules for eZ Publish
+   ( http://ez.no/doc/ez_publish/techn.../4_0/installation/virtual_host_setup ),
+   you should add this rewrite rule as well:
+
+   RewriteRule ^/extension/ezchat/ajaxchat/.* - [L]
+
 6. Enable the eZchat extension in eZ publish.
 
    To enable eZchat for all of your siteaccesses, log in to your eZ publish

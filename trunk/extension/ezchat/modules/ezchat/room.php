@@ -40,6 +40,7 @@ $ezchatIni = eZINI::instance( 'ezchat.ini' );
 $Module->setTitle( $ezchatIni->variable( 'generalDefaults', 'ezchatRoomName' ) );
 $Result = array();
 $currentUser = eZUser::currentUser();
+$http = eZHTTPTool::instance();
 if ($Params['Channel']) $_REQUEST['channelName'] = $Params['Channel'];
 
 // Overrides for room module rights
@@ -74,7 +75,7 @@ $_REQUEST['loginURL'] = '/ezchat/room';
 
 // Cases of use
   // if not anonymous and not ?logout=true, auto login
-	if ($currentUser->isAnonymous()==false && (eZHTTPTool::hasGetVariable('logout')==false ) ) {
+	if ($currentUser->isAnonymous()==false && ($http->hasGetVariable('logout')==false ) ) {
 		// retrieving main config
 		$langDefault = null;
 		require(EZ_AJAX_CHAT_PATH.'langMap.php');
@@ -84,8 +85,7 @@ $_REQUEST['loginURL'] = '/ezchat/room';
 		$_REQUEST['lang'] = $langDefault;
 	}
   // if logout=full, force logout from eZpublish
-	if (eZHTTPTool::hasGetVariable('logout')==true && eZHTTPTool::getVariable('logout')=='full') {
-		$http = eZHTTPTool::instance();
+	if ($http->hasGetVariable('logout')==true && $http->getVariable('logout')=='full') {
 		$currentUser->logoutCurrent();
 		$http->setSessionVariable( 'force_logout', 1 );
 		$redirectURL = $ezchatIni->variable( 'generalDefaults', 'eZlogoutRedirect' );

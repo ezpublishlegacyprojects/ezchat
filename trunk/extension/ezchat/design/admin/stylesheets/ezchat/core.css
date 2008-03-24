@@ -181,11 +181,11 @@ div.lessmore a {
 	color:white;
 }
 .smallbutton {
-	width: 31%;
+	width: 23%;
 	margin: 0em 1% 0em 0em;
 }
 * html .smallbutton {
-	width: 30%;
+	width: 22%;
 	margin: 0em 2px 0em 0em;
 }
 .iconblock {

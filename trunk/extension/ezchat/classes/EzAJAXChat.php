@@ -38,12 +38,12 @@ class EzAJAXChat extends CustomAJAXChat {
 		$this->_config =& $config;
 	}
 
-	function getCustomUsers() {
+	function &getCustomUsers() {
 		// List containing the registered chat users:
 		return $this->_config['users'];
 	}
 
-	function getCustomChannels() {
+	function &getCustomChannels() {
 		// List containing the custom channels:
 		return $this->_config['channels'];
 	}

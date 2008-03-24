@@ -26,15 +26,15 @@ require_once( "lib/ezutils/classes/ezini.php" );
 require_once( "lib/ezutils/classes/ezuri.php" );
 require_once( "kernel/classes/datatypes/ezuser/ezuser.php" );
 
-$siteIni =& eZINI::instance( 'site.ini' );
-$ezchatIni =& eZINI::instance( 'ezchat.ini' );
+$siteIni = eZINI::instance( 'site.ini' );
+$ezchatIni = eZINI::instance( 'ezchat.ini' );
 
 // computing channels
 $config['channels'] = array();
 $chatFetcher = new eZChatroomFunctionCollection();
 $iniChannels = $ezchatIni->variableArray( 'generalDefaults', 'channels' );
 foreach($iniChannels as $channel) $config['channels'][] = $channel[0];
-$ezchannels =& $chatFetcher->fetchChatroomList();
+$ezchannels = $chatFetcher->fetchChatroomList();
 foreach($ezchannels['result'] as $ezchannel)
 	$config['channels'][$ezchannel['object_id']] = $ezchannel['chatroom']->name();
 

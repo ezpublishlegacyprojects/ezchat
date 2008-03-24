@@ -32,7 +32,7 @@ class ezchatInfo
                       'License' => "GNU General Public License v2.0",
         			  'For more information' => 'http://www.wascou.org/',
         			  'Includes the following third-party software' => array( 'Name' => 'Ajax Chat',
-                                                                              'Version' => '0.7.3',
+                                                                              'Version' => '0.8.1.2',
         																	  'Copyright' => 'Copyright (C) 2008 blueimp.net',
                                                                               'License' => 'GNU AFFERO GENERAL PUBLIC LICENSE v3 - 19 November 2007',
                                                                               'For more information' => 'http://blueimp.net/' )

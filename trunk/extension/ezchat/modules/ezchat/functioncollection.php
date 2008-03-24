@@ -33,7 +33,7 @@ class eZChatroomFunctionCollection {
 
     	foreach ($chatroomList['result'] as $chatroom) {
     		$matches = array();
-        	if (preg_match($name, $chatroom['chatroom']->name(), &$matches)!=0 && $matches[0]==$chatroom['chatroom']->name())
+        	if (preg_match($name, $chatroom['chatroom']->name(), $matches)!=0 && $matches[0]==$chatroom['chatroom']->name())
 				return array( 'result' => $chatroom );
     	}
     	return array( 'result' => false );
