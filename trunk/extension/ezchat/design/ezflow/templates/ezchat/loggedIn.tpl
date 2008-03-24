@@ -61,6 +61,8 @@
 			ajaxChat.updateButton('autoScroll', 'autoScrollButton');
 			{*
 			document.getElementById('bbCodeSetting').checked = ajaxChat.getSetting('bbCode');
+			document.getElementById('bbCodeImagesSetting').checked = ajaxChat.getSetting('bbCodeImages');
+			document.getElementById('bbCodeColorsSetting').checked = ajaxChat.getSetting('bbCodeColors');
 			document.getElementById('hyperLinksSetting').checked = ajaxChat.getSetting('hyperLinks');
 			document.getElementById('lineBreaksSetting').checked = ajaxChat.getSetting('lineBreaks');
 			document.getElementById('emoticonsSetting').checked = ajaxChat.getSetting('emoticons');
@@ -175,6 +177,7 @@
 					<input class="defaultbutton" type="button" value="[LANG]bbCodeLabelQuote[/LANG]" title="[LANG]bbCodeTitleQuote[/LANG]" onclick="ajaxChat.insertBBCode('quote');"/>
 					<input class="defaultbutton" type="button" value="[LANG]bbCodeLabelCode[/LANG]" title="[LANG]bbCodeTitleCode[/LANG]" onclick="ajaxChat.insertBBCode('code');"/>
 					<input class="defaultbutton" type="button" value="[LANG]bbCodeLabelURL[/LANG]" title="[LANG]bbCodeTitleURL[/LANG]" onclick="ajaxChat.insertBBCode('url');"/>
+					<input class="defaultbutton" type="button" value="[LANG]bbCodeLabelImg[/LANG]" title="[LANG]bbCodeTitleImg[/LANG]" onclick="ajaxChat.insertBBCode('img');"/>
 					<input class="defaultbutton" type="button" value="[LANG]bbCodeLabelColor[/LANG]" title="[LANG]bbCodeTitleColor[/LANG]" onclick="ajaxChat.showHide('colorCodesContainer', null);"/>
 					<input type="button" class="defaultbutton" id="audioButton" value="[LANG]toggleAudio[/LANG]" title="[LANG]toggleAudio[/LANG]" onclick="ajaxChat.toggleSetting('audio', 'audioButton');"/>
 					<input type="button" class="defaultbutton" id="autoScrollButton" value="[LANG]toggleAutoScroll[/LANG]" title="[LANG]toggleAutoScroll[/LANG]" onclick="ajaxChat.toggleSetting('autoScroll', 'autoScrollButton');"/>

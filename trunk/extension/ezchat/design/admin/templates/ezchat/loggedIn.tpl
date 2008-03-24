@@ -60,6 +60,8 @@
 			ajaxChat.updateButton('audio', 'audioButton');
 			ajaxChat.updateButton('autoScroll', 'autoScrollButton');
 			document.getElementById('bbCodeSetting').checked = ajaxChat.getSetting('bbCode');
+			document.getElementById('bbCodeImagesSetting').checked = ajaxChat.getSetting('bbCodeImages');
+			document.getElementById('bbCodeColorsSetting').checked = ajaxChat.getSetting('bbCodeColors');
 			document.getElementById('hyperLinksSetting').checked = ajaxChat.getSetting('hyperLinks');
 			document.getElementById('lineBreaksSetting').checked = ajaxChat.getSetting('lineBreaks');
 			document.getElementById('emoticonsSetting').checked = ajaxChat.getSetting('emoticons');
@@ -169,6 +171,7 @@
 					<input type="button" class="button smallbutton" value="[LANG]bbCodeLabelQuote[/LANG]" title="[LANG]bbCodeTitleQuote[/LANG]" onclick="ajaxChat.insertBBCode('quote');"/>
 					<input type="button" class="button smallbutton" value="[LANG]bbCodeLabelCode[/LANG]" title="[LANG]bbCodeTitleCode[/LANG]" onclick="ajaxChat.insertBBCode('code');"/>
 					<input type="button" class="button smallbutton" value="[LANG]bbCodeLabelURL[/LANG]" title="[LANG]bbCodeTitleURL[/LANG]" onclick="ajaxChat.insertBBCode('url');"/>
+					<input type="button" class="button smallbutton" value="[LANG]bbCodeLabelImg[/LANG]" title="[LANG]bbCodeTitleImg[/LANG]" onclick="ajaxChat.insertBBCode('img');"/>
 				</div>
 				<div id="tools2Container" class="block" style="display:none;">
 					<input type="button" class="button smallbutton" value="[LANG]bbCodeLabelBold[/LANG]" title="[LANG]bbCodeTitleBold[/LANG]" onclick="ajaxChat.insertBBCode('b');" style="font-weight:bold;"/>
@@ -211,6 +214,14 @@
 							<tr class="rowOdd">
 								<td><label for="bbCodeSetting">[LANG]settingsBBCode[/LANG]</label></td>
 								<td class="setting"><input type="checkbox" id="bbCodeSetting" onclick="ajaxChat.setSetting('bbCode', this.checked);"/></td>
+							</tr>
+							<tr class="rowEven">
+								<td><label for="bbCodeImagesSetting">[LANG]settingsBBCodeImages[/LANG]</label></td>
+								<td class="setting"><input type="checkbox" id="bbCodeImagesSetting" onclick="ajaxChat.setSetting('bbCodeImages', this.checked);"/></td>
+							</tr>
+							<tr class="rowOdd">
+								<td><label for="bbCodeColorsSetting">[LANG]settingsBBCodeColors[/LANG]</label></td>
+								<td class="setting"><input type="checkbox" id="bbCodeColorsSetting" onclick="ajaxChat.setSetting('bbCodeColors', this.checked);"/></td>
 							</tr>
 							<tr class="rowEven">
 								<td><label for="hyperLinksSetting">[LANG]settingsHyperLinks[/LANG]</label></td>

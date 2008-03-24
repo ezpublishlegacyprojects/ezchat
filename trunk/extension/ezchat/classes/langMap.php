@@ -32,14 +32,14 @@ $ezchatIni =& eZINI::instance( 'ezchat.ini' );
 // Default language:
 if ( $ezchatIni->hasVariable( 'langDefault', 'generalDefaults' ) ) $langDefault = $ezchatIni->variable( 'langDefault', 'generalDefaults' );
 $translationsAvailable = array(	'cat-ES' => 'es',	'eng-GB' => 'en',	'hin-IN' => '',	'por-MZ' => '',
-								'chi-CN' => '',	'eng-US' => 'en',	'hun-HU' => '',	'por-PT' => '',
+								'chi-CN' => 'zh',	'eng-US' => 'en',	'hun-HU' => '',	'por-PT' => '',
 								'chi-TW' => '',	'esl-ES' => 'es',	'ita-IT' => 'it',	'rus-RU' => 'ru',
 								'cro-HR' => '',	'esl-MX' => 'es',	'jpn-JP' => '',	'slk-SK' => 'sk',
 								'cze-CZ' => '',	'fin-FI' => 'fi',	'kor-KR' => '',	'swe-SE' => 'sv',
-								'dan-DK' => '',	'fre-CA' => 'fr',	'nno-NO' => 'no',	'tur-TR' => '',
+								'dan-DK' => '',	'fre-CA' => 'fr',	'nno-NO' => 'no',	'tur-TR' => 'tr',
 								'dut-NL' => 'nl',	'fre-FR' => 'fr',	'nor-NO' => 'no',	'ukr-UA' => 'uk',
 								'eng-AU' => 'en',	'ger-DE' => 'de',	'pol-PL' => 'pl',
-								'eng-CA' => 'en',	'heb-IL' => 'he',	'por-BR' => '');
+								'eng-CA' => 'en',	'heb-IL' => 'he',	'por-BR' => 'bp');
 //TODO : finir de remplir ce tableau !
 $locale = $siteIni->variable( 'RegionalSettings', 'Locale' );
 if ($locale && $translationsAvailable[substr($locale,0,6)]) {
