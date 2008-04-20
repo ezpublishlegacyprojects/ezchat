@@ -29,6 +29,7 @@
 
 <ul>
     <li><div><a href={'/ezchat/welcome/'|ezurl}>{'Welcome'|i18n( 'design/admin/parts/ezchat/menu' )}</a></div></li>
+    <li><div><a href={'/ezchat/listrooms/'|ezurl}>{'Available chatrooms'|i18n( 'design/admin/parts/ezchat/menu' )}</a></div></li>
     <li><div><a href={'/ezchat/room/'|ezurl}>{'Enter chatroom'|i18n( 'design/admin/parts/ezchat/menu' )}</a></div></li>
 </ul>
 

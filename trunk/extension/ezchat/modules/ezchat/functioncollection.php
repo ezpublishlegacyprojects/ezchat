@@ -41,8 +41,8 @@ class eZChatroomFunctionCollection {
 
 	function fetchChatroomList($dummy = false) {
 		$db = eZDB::instance();
-		$classIdsQuery = "SELECT contentclass_id, identifier FROM ezcontentclass_attribute WHERE data_type_string='ezchatroom'";
-        $classIds = $db->arrayQuery( $classIdsQuery );
+		$chatroomClasses =& $this->fetchChatroomClasses();
+		$classIds = $chatroomClasses['result'];
 
         // retrieves ezchatroom attributes that current user can read.
         $chatroomAttributes = array();
@@ -70,6 +70,11 @@ class eZChatroomFunctionCollection {
     	return array( 'result' => $chatroomAttributes );
     }
 
+    function fetchChatroomClasses($dummy = false) {
+    	$db = eZDB::instance();
+		$classIdsQuery = "SELECT contentclass_id, identifier FROM ezcontentclass_attribute WHERE data_type_string='ezchatroom'";
+        return array( 'result' => $db->arrayQuery( $classIdsQuery ) );
+    }
 
 }
 

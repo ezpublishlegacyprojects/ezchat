@@ -274,4 +274,16 @@
     </message>
 
 </context>
+<context>
+	<name>design/admin/ezchatinfo</name>
+    <message>
+        <source>Detected errors and warnings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No class with ezchatroom datatype found. Only static chatrooms will be available. You have to create a class with ezchatroom datatype to be able to use content chatrooms.</source>
+        <translation type="unfinished"></translation>
+    </message>
+
+</context>
 </TS>

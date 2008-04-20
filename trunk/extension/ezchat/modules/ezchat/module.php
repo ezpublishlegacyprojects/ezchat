@@ -37,6 +37,11 @@ $ViewList['welcome'] = array(	'script' => 'welcome.php',
 								'params' => array(),
 								'default_navigation_part' => 'ezchatnavigationpart'
 						);
+$ViewList['listrooms'] = array(	'script' => 'listrooms.php',
+								'functions' => array( 'administrate' ),
+								'params' => array(),
+								'default_navigation_part' => 'ezchatnavigationpart'
+						);
 $ViewList['userpicture'] = array(	'script' => 'userpicture.php',
 									'functions' => array( 'room' ),
 									'params' => array(),

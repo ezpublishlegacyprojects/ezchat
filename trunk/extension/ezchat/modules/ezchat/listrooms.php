@@ -34,29 +34,16 @@ require_once( "extension/ezchat/modules/ezchat/functioncollection.php" );
 // Init vars
 $Module = $Params["Module"];
 $ezchatIni = eZINI::instance( 'ezchat.ini' );
-$Module->setTitle( $ezchatIni->variable( 'generalDefaults', 'ezchatRoomName' ) );
+$Module->setTitle( ezi18n('kernel/navigationpart','Available chatrooms','Navigation path' ) );
 $Result = array();
-$currentUser = eZUser::currentUser();
 $tpl = templateInit();
-$info = ezchatInfo::info();
-$warning = false;
-$warnings = array();
 
-$functionCollection = new eZChatroomFunctionCollection();
-$classes =& $functionCollection->fetchChatroomClasses();
-if (sizeOf($classes['result']) == 0) {
-	$warning = true;
-	$warnings[] = "No class with ezchatroom datatype found. Only static chatrooms will be available. You have to create a class with ezchatroom datatype to be able to use content chatrooms.";
-}
-
-$tpl->setVariable('info',$info);
-$tpl->setVariable('warning',$warning);
-if ($warning) $tpl->setVariable('warnings',$warnings);
-
-$Result['content'] = $tpl->fetch("design:ezchat/welcome.tpl");
+$Result['content'] = $tpl->fetch("design:ezchat/listrooms.tpl");
 $Result['left_menu'] = "design:parts/ezchat/menu.tpl";
 $Result['path'] = array( array( 'url' => '/ezchat/welcome',
-                                'text' => ezi18n('kernel/navigationpart','eZchat','Navigation path' ) ) );
+                                'text' => ezi18n('kernel/navigationpart','eZchat','Navigation path' ) ),
+						 array( 'url' => '/ezchat/listrooms',
+                                'text' => ezi18n('kernel/navigationpart','Available chatrooms','Navigation path' ) ) );
 
 
 

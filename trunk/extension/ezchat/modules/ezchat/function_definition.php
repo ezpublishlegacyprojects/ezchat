@@ -52,5 +52,19 @@ $FunctionList['chatroomlist'] = array( 'name' => 'chatroomlist',
                                                       ) )
                                         );
 
+$FunctionList['chatroomclasses'] = array( 'name' => 'chatroomclasses',
+                                            'operation_types' => array( 'read' ),
+                                            'call_method' => array( 'include_file' => 'extension/ezchat/modules/ezchat/functioncollection.php',
+                                                  				'class' => 'eZChatroomFunctionCollection',
+                                                  				'method' => 'fetchChatroomClasses' ),
+                                            'parameter_type' => 'standard',
+                                            'parameters' => array(
+                                        		array( 'name' => 'dummy',
+                                                       'type' => 'integer',
+                                                       'required' => false,
+                                                       'default'  => 1
+                                                      ) )
+                                        );
+
 
 ?>
