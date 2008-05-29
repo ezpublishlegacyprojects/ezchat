@@ -3,4 +3,7 @@
 [RegionalSettings]
 TranslationExtensions[]=ezchat
 
+[TemplateSettings]
+ExtensionAutoloadPath[]=ezchat
+
 */ ?>

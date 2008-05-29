@@ -237,6 +237,10 @@
         <source>deploy/shrink online users</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Found chatrooms</source>
+        <translation type="unfinished"></translation>
+    </message>
 
 </context>
 <context>
@@ -251,6 +255,10 @@
     </message>
     <message>
         <source>Enter chatroom</source>
+        <translation type="unfinished"></translation>
+    </message>
+	<message>
+        <source>Available chatrooms</source>
         <translation type="unfinished"></translation>
     </message>
 
@@ -269,6 +277,11 @@
     </message>
     <message>
         <source>Chatroom</source>
+        <comment>Navigation path</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Available chatrooms</source>
         <comment>Navigation path</comment>
         <translation type="unfinished"></translation>
     </message>

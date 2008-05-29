@@ -102,7 +102,7 @@ class ezchatroomtype extends eZDataType
         		// check if no special chars in channel name
         		$regexp = $ezchatIni->variable( 'chatroomDatatype', 'channelNameAllowedCharsRegexp' );
         		$matches = array();
-        		if (preg_match("/".$regexp."/", $channelName, &$matches)==0 || $matches[0]!=$channelName) {
+        		if (preg_match("/^".$regexp.'$/', $channelName, &$matches)==0 || $matches[0]!=$channelName) {
         			$contentObjectAttribute->setValidationError( ezi18n( 'ezchat/datatypes/chatroom',
                                                                  'The channel name contains forbidden characters or spaces.' ) );
 
